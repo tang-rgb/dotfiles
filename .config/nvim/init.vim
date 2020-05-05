@@ -1,0 +1,1 @@
+/home/jessun/.vim/vimrc
