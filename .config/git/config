@@ -1,44 +1,45 @@
 # git config
 [alias]
-lg         = log --graph --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
-log1       = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
-log2       = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
-log3       = log --format='%Cred%h%Creset %s %Cgreen(%cr) %C(blue)<%an>%Creset%C(yellow)%d%Creset' --no-merges
-stash-list = stash list --pretty=format:'%Cblue%gd%Cred: %C(yellow)%s'q
-fix        = diff --name-only | uniq | xargs nvim  # 处理冲突文件
-
+    lg             = log --graph --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
+    log1           = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+    log2           = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+    log3           = log --format='%Cred%h%Creset %s %Cgreen(%cr) %C(blue)<%an>%Creset%C(yellow)%d%Creset' --no-merges
+    stash-list     = stash list --pretty=format:'%Cblue%gd%Cred: %C(yellow)%s'q
 
 # Abbr
-a          = add
-b          = branch
-bm         = branch --merged
-bd         = branch -d
-br         = branch -r
-rv         = remote -v
-cm         = commit
-co         = checkout
-cb         = checkout -b
-s          = status
-m          = merge
-d          = difftool
-u          = pull --all
+; a          = add
+; b          = branch
+; bm         = branch --merged
+; bd         = branch -d
+; br         = branch -r
+; rv         = remote -v
+; cm         = commit
+; co         = checkout
+; cb         = checkout -b
+; s          = status
+; m          = merge
+; d          = difftool
+; u          = pull --all
 
 [user]
-name       = jessun
-email      = jesun1990@outlook.com
+    name           = Jessun
+    email          = jessun1990@gmail.com
 
 [core]
-editor     = "nvim"
-
-
+    editor         = "nvim"
 [diff]
-tool       = vimdiff
-
-[difftool "vscode"]
-cmd        = code --wait --diff $LOCAL $REMOTE -y
-[difftool]
-prompt     = No
+    tool           = vimdiff
 [http]
-proxy      =
+	proxy          = 127.0.0.1:1087
 [https]
-proxy      =
+	proxy          = 127.0.0.1:1087
+[core]
+    quotepath      = false
+[i18n]  
+    commitencoding = utf-8
+[gui]  
+    encoding       = utf-8
+[pull]
+	rebase         = false
+[url "git@10.186.18.21:universe"]
+	insteadOf      = http://10.186.18.21/universe

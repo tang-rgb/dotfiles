@@ -1,0 +1,62 @@
+snippet "meta" "Markdown metadata front matter" b
+---
+
+title: "$1"
+date: `!p from datetime import datetime
+if not snip.c:
+    snip.rv=datetime.now().strftime("%Y-%m-%d %H:%M:%S%z")`
+tags: [$2]
+categories: [$3]
+draft: true
+
+---
+endsnippet
+
+snippet "plantuml_content" "plantuml default skin" b
+!define BLACK   #363D5D
+!define RED     #F6363F
+!define PINK    #F6216E
+!define MAGENTA #A54FBD
+!define GREEN   #37A77C
+!define YELLOW  #F97A00
+!define BLUE    #1E98F2
+!define CYAN    #25AFCA
+!define WHITE   #FEF2DC
+!define LIGHT_BLUE #EAF2F8
+
+skinparam NoteBackgroundColor #f9fbe7
+skinparam NoteBorderColor #eeeeee
+skinparam DividerBackgroundColor RED
+
+skinparam Default {
+  FontColor BLACK
+  FontSize  10
+}
+
+skinparam Sequence {
+  ActorBorderThickness 1
+  ArrowColor RED
+  ArrowThickness 1
+  BoxBackgroundColor LIGHT_BLUE
+  BoxBorderColor LIGHT_BLUE
+  LifeLineBorderColor GREEN
+  DividerBackgroundColor #273746
+  DividerBorderThickness 0
+  DividerBorderColor #eee
+  DividerFontColor #FFFFFF
+  ParticipantBorderThickness 0
+}
+
+skinparam Participant {
+  BackgroundColor BLACK
+  BorderColor BLACK
+  FontColor #FFFFFF
+}
+
+skinparam Actor {
+  BackgroundColor BLACK
+  BorderColor BLACK
+}
+
+title <size:20>标题</size>
+endsnippet

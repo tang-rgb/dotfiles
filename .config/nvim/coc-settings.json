@@ -1,24 +1,203 @@
 {
-  "go.goplsOptions": {
-    "usePlaceholders": false,
-    "hoverKind": "FullDocumentation",
-    "staticcheck": true,
-    "completeUnimported": true,
-    "deepCompletion": true,
-    "completionDocumentation": true,
-    "fuzzyMatching": true,
-    "analyses": {
-      "unreachable": false,
-      "unusedparams": true
+  "diagnostic.level": "hint",
+  "languageserver": {
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": [
+        "go.mod",
+        ".vim/",
+        ".git/",
+        ".hg/"
+      ],
+      "filetypes": [
+        "go"
+      ],
+      "initializationOptions": {
+        "usePlaceholders": false,
+        "hoverKind": "SynopsisDocumentation",
+        "staticcheck": true,
+        "completeUnimported": true,
+        "deepCompletion": true,
+        "completionDocumentation": true,
+        "fuzzyMatching": true,
+        "analyses": {
+          "unreachable": true,
+          "unusedparams": true,
+          "fillreturns": true,
+          "nonewvars": true,
+          "undeclaredname": true
+        }
+      }
+    },
+    "bash": {
+      "command": "bash-language-server",
+      "args": [
+        "start"
+      ],
+      "filetypes": [
+        "sh"
+      ],
+      "ignoredRootPaths": [
+        "~"
+      ]
     }
   },
+  "rust-analyzer.serverPath": "~/.cargo/bin/rust-analyzer",
   "coc.preferences.formatOnSaveFiletypes": [
-    "css",
-    "markdown",
-    "rust",
     "go",
-    "json"
+    "css",
+    "go",
+    "json",
+    "markdown",
+    "rust"
+  ],
+  "list.source.tags.command": "ctags -R -f ./.tags",
+  "list.source.grep.args": [
+    "-S",
+    "-i"
   ],
   "git.enableGutters": true,
-  "git.addGBlameToBufferVar": false
+  "git.addGBlameToBufferVar": false,
+  "cSpell.enabledLanguageIds": [
+    "go",
+    "javascript",
+    "javascriptreact",
+    "markdown",
+    "plaintext",
+    "typescript",
+    "typescriptreact",
+    "yml"
+  ],
+  "cSpell.ignorePaths": [
+    "node_modules",
+    "**/node_modules",
+    "**/node_modules/**",
+    "node_modules/**",
+    "vscode-extension",
+    ".git",
+    "*.dll",
+    "**/*.dll"
+  ],
+  "cSpell.showStatus": true,
+  "cSpell.allowCompoundWords": true,
+  "cSpell.ignoreWords": [],
+  "explorer.file.showHiddenFiles": true,
+  "explorer.keyMappings": {
+    "i": false, // cancel default mapkey
+    "gk": "expandablePrev",
+    "gj": "expandableNext",
+    "*": "toggleSelection",
+    "<tab>": "actionMenu",
+    "h": "collapse",
+    "l": [
+      "expandable?",
+      "expand",
+      "open"
+    ],
+    "J": [
+      "toggleSelection",
+      "nodeNext"
+    ],
+    "K": [
+      "toggleSelection",
+      "nodePrev"
+    ],
+    "gl": "expandRecursive",
+    "gh": "collapseRecursive",
+    "<2-LeftMouse>": [
+      "expandable?",
+      [
+        "expanded?",
+        "collapse",
+        "expand"
+      ],
+      "open"
+    ],
+    "o": [
+      "expanded?",
+      "collapse",
+      "expand"
+    ],
+    "<cr>": [
+      "expandable?",
+      "expand",
+      "open"
+    ],
+    "e": "open",
+    "s": "open:split",
+    "S": "open:split:plain",
+    "E": "open:vsplit",
+    "t": "open:tab",
+    "<bs>": "gotoParent",
+    "gp": "preview:labeling",
+    "y": "copyFilepath",
+    "Y": "copyFilename",
+    "c": "copyFile",
+    "x": "cutFile",
+    "p": "pasteFile",
+    "d": "delete",
+    "D": "deleteForever",
+    "a": "addFile",
+    "A": "addDirectory",
+    "r": "rename",
+    ".": "toggleHidden",
+    "R": "refresh",
+    "?": "help",
+    "q": "quit",
+    "<esc>": "esc",
+    "X": "systemExecute",
+    "gd": "listDrive",
+    "f": "search",
+    "F": "searchRecursive",
+    "gf": "gotoSource:file",
+    "gb": "gotoSource:buffer",
+    "[[": "sourcePrev",
+    "]]": "sourceNext",
+    "[d": "diagnosticPrev",
+    "]d": "diagnosticNext",
+    "[c": "gitPrev",
+    "]c": "gitNext",
+    "<<": "gitStage",
+    ">>": "gitUnstage"
+  },
+  "cSpell.userWords": [
+    "Arial",
+    "Dhcp",
+    "Glibc",
+    "Intellij",
+    "Metas",
+    "Numa",
+    "Selinux",
+    "Transmited",
+    "Ulimit",
+    "Umon",
+    "cncb",
+    "enduml",
+    "icbc",
+    "iface",
+    "iptables",
+    "jira",
+    "matishsiao",
+    "mycnf",
+    "mysqld",
+    "nvim",
+    "plantuml",
+    "retransmited",
+    "skinparam",
+    "startuml",
+    "struct",
+    "sysinfo",
+    "systemctl",
+    "systemd",
+    "uagent",
+    "ucommon",
+    "ucore",
+    "udelay",
+    "udeploy",
+    "udms",
+    "uguard",
+    "uinterface",
+    "urman",
+    "zcalusic"
+  ]
 }

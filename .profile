@@ -93,3 +93,6 @@ fi
 #fi
 
 export PATH="$HOME/.cargo/bin:$PATH"
+export TERM="xterm-256color"
+[[ -s "/home/jessun/.gvm/scripts/gvm" ]] && source "/home/jessun/.gvm/scripts/gvm"
+gvm use go1.14.4 --default

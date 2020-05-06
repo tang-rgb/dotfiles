@@ -25,7 +25,7 @@ set rtp+=/usr/local/opt/fzf
 " ===================================================
 "
 " ==================== Vim-plug =====================
-call plug#begin('~/.vm/plugged')
+call plug#begin('~/.vim/plugged')
 
 " Basic plugin =================
 if has('nvim')
@@ -42,30 +42,55 @@ Plug 'sheerun/vim-polyglot'           " 语法高亮
 Plug 'dense-analysis/ale'
 
 Plug 'flazz/vim-colorschemes'        " 配色主题
-"Plug 'rafi/awesome-vim-colorschemes' " 配色主题
+" Plug 't1mxg0d/vim-lucario'
 Plug 'itchyny/lightline.vim'
-Plug 'mengelbrecht/lightline-bufferline'
+" Plug 'voldikss/vim-floaterm'
+" Plug 'mengelbrecht/lightline-bufferline'
 
 " general =====================
 "Plug 'asins/vimcdoc'
-Plug 'scrooloose/nerdtree'
+" Plug 'scrooloose/nerdtree'
 "Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-"Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'ryanoasis/vim-devicons'
+" Plug 'kristijanhusak/defx-icons'
 Plug 'tommcdo/vim-fugitive-blame-ext' " git 信息
 Plug 'tpope/vim-fugitive'             " git 相关
+Plug 'voldikss/vim-floaterm'
+Plug 'kristijanhusak/vim-carbon-now-sh'
+
+
+" tags ========================
+" Plug 'ludovicchabant/vim-gutentags'
+" Plug 'skywind3000/gutentags_plus'
 
 " code ========================
 Plug 'liuchengxu/vista.vim' " tag
-" Plug 'majutsushi/tagbar'    " tag
 Plug 'junegunn/vim-easy-align'
-Plug 'kshenoy/vim-signature'
-"Plug 'mg979/vim-visual-multi'
-Plug 'neoclide/coc.nvim', {'branch': 'release'} " 补全
+
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+
+Plug 'fannheyward/coc-markdownlint', {'do': 'yarn install --frozen-lockfile', 'for': 'markdown'}
+Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile', 'for': 'css'}
+Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile', 'for': 'css'}
+Plug 'fannheyward/coc-marketplace', {'do': 'yarn install --frozen-lockfile'}
+Plug 'fannheyward/coc-rust-analyzer', {'do': 'yarn install --frozen-lockfile', 'for': 'rust'}
+Plug 'iamcco/coc-actions', {'do': 'yarn install --frozen-lockfile'}
+Plug 'iamcco/coc-spell-checker', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-git', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile', 'for': 'json'}
+Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile', 'for': 'yaml'}
+Plug 'neoclide/coc-yank', {'do': 'yarn install --frozen-lockfile'}
+Plug 'voldikss/coc-bookmark', {'do': 'yarn install --frozen-lockfile'}
+Plug 'weirongxu/coc-explorer', {'do': 'yarn install --frozen-lockfile'}
+
+Plug 'ap/vim-css-color'
 Plug 'scrooloose/nerdcommenter'       " 注释
 Plug 'tpope/vim-surround'             " 快捷操作
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 'markdown' }
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
 
 " wxminiapp ===================
 " Plug 'chemzqm/wxapp.vim'
@@ -83,10 +108,12 @@ call plug#end()
 " default: 0
 let g:mkdp_auto_start = 0
 
+let g:mkdp_browserfunc = 'g:open_browser'
+
 " set to 1, the nvim will auto close current preview window when change
 " from markdown buffer to another buffer
 " default: 1
-let g:mkdp_auto_close = 1
+let g:mkdp_auto_close = 0
 
 " set to 1, the vim will refresh markdown when save the buffer or
 " leave from insert mode, default 0 is auto refresh markdown as you edit or
@@ -138,7 +165,7 @@ let g:mkdp_browserfunc = ''
 let g:mkdp_preview_options = {
     \ 'mkit': {},
     \ 'katex': {},
-    \ 'uml': {},
+    \ 'uml': {'server': 'http://localhost:8080'},
     \ 'maid': {},
     \ 'disable_sync_scroll': 0,
     \ 'sync_scroll_type': 'middle',
@@ -149,7 +176,7 @@ let g:mkdp_preview_options = {
 
 " use a custom markdown style must be absolute path
 " like '/Users/username/markdown.css' or expand('~/markdown.css')
-let g:mkdp_markdown_css = ''
+let g:mkdp_markdown_css = expand('~/.vim/markdown.css')
 
 " use a custom highlight style must absolute path
 " like '/Users/username/highlight.css' or expand('~/highlight.css')
@@ -212,22 +239,24 @@ let g:go_highlight_variable_declarations = 1
 " au FileType go nmap <leader>gr <Plug>(go-run)
 " au FileType go nmap <leader>gt <Plug>(go-test)
 " let g:go_list_type = "quickfix"
-nmap <Leader>cw :cw 5<CR>  " 打开 quickfix 列表
-nmap <Leader>nn :cnext<CR> "
-nmap <Leader>cn :cnext<CR> " 跳转下一项
-nmap <Leader>mm :cprevious<CR>
-nmap <Leader>cp :cprevious<CR> " 跳转上一项
+" nmap <Leader>cw :cw 5<CR>  " 打开 quickfix 列表
+" nmap <Leader>nn :cnext<CR> "
+" nmap <Leader>cn :cnext<CR> " 跳转下一项
+" nmap <Leader>mm :cprevious<CR>
+" nmap <Leader>cp :cprevious<CR> " 跳转上一项
 " ===================================================
 "
 " =============== 'ense-analysis/ale' ===============
+" \   'rust': ['rustfmt']
+" \   'go': ['gofmt', 'goimports', 'gomod'],
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['eslint'],
-\   'rust': ['rustfmt']
 \}
+" \  'rust': ['rls', 'cargo', 'rustc']
+" \  'go': ['gopls'],
 let g:ale_linters = {
 \  'javascript': ['eslint'],
-\  'rust': ['rls', 'cargo', 'rustc']
 \}
 let g:ale_linters_explicit = 1
 let g:ale_completion_enabled = 0   " 自动补全
@@ -259,27 +288,27 @@ highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
 " ===================================================
 "
 " ============== 'scrooloose/nerdtree' ==============
-nmap <leader>nt :NERDTreeToggle<CR>
-let NERDTreeShowHidden=1  " 显示隐藏文件
-let NERDTreeMapOpenIntab='\r'
-let NERDTreeMinimalUI=1   " 去除第一行的帮助提示
-let NERDTreeWinSize=30    " 在左边占多宽
-let NERDTreeChDirMode = 2 " 当前目录的设定
-"自动退出
-autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeType == "primary") | q | endif
-"autocmd vimenter * NERDTree "打开vim时自动打开
-let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ 'Ignored'   : '☒',
-    \ "Unknown"   : "?",
-    \ }
+" nmap <leader>nt :NERDTreeToggle<CR>
+" let NERDTreeShowHidden=1  " 显示隐藏文件
+" let NERDTreeMapOpenIntab='\r'
+" let NERDTreeMinimalUI=1   " 去除第一行的帮助提示
+" let NERDTreeWinSize=30    " 在左边占多宽
+" let NERDTreeChDirMode = 2 " 当前目录的设定
+" "自动退出
+" autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeType == "primary") | q | endif
+" "autocmd vimenter * NERDTree "打开vim时自动打开
+" let g:NERDTreeIndicatorMapCustom = {
+"     \ "Modified"  : "✹",
+"     \ "Staged"    : "✚",
+"     \ "Untracked" : "✭",
+"     \ "Renamed"   : "➜",
+"     \ "Unmerged"  : "═",
+"     \ "Deleted"   : "✖",
+"     \ "Dirty"     : "✗",
+"     \ "Clean"     : "✔︎",
+"     \ 'Ignored'   : '☒',
+"     \ "Unknown"   : "?",
+"     \ }
 " ===================================================
 "
 " =============== 'rust-lang/rust.vim' ==============
@@ -296,8 +325,8 @@ let g:NERDTreeIndicatorMapCustom = {
 "else
     "let g:rust_clip_command = 'xclip -selection clipboard'
 "endif
-" ===================================================
-"
+" " ===================================================
+" "
 " ============='scrooloose/nerdcommenter' ===========
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
@@ -313,67 +342,137 @@ let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
 let g:NERDCommentEmptyLines = 1
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
-" Enable NERDCommenterToggle to check all selected lines is commented or not 
+" Enable NERDCommenterToggle to check all selected lines is commented or not
 let g:NERDToggleCheckAllLines = 1
 " ===================================================
 "
 " ========================'fzf' =====================
-nmap <leader><tab> <plug>(fzf-maps-n)
-xmap <leader><tab> <plug>(fzf-maps-x)
-omap <leader><tab> <plug>(fzf-maps-o)
-imap <c-x><c-k> <plug>(fzf-complete-word)
-imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-imap <c-x><c-l> <plug>(fzf-complete-line)
-inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
-" Empty value to disable preview window altogether
-let g:fzf_preview_window = ''
+command! -bang LS call fzf#run(fzf#wrap({'source': 'ls'}, <bang>0))
 
-" Always enable preview window on the right with 60% width
-let g:fzf_preview_window = 'right:60%'
-" [Buffers] Jump to the existing window if possible
-let g:fzf_buffers_jump = 1
+" This is the default extra key bindings
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
 
-" [[B]Commits] Customize the options used by 'git log':
-let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
-
-" [Tags] Command to generate tags file
-let g:fzf_tags_command = 'ctags -R'
-
-" [Commands] --expect expression for directly executing the command
-let g:fzf_commands_expect = 'alt-enter,ctrl-x'
-inoremap <expr> <c-x><c-k> fzf#vim#complete('cat /usr/share/dict/words')
-
-autocmd! FileType fzf set laststatus=0 noshowmode noruler
-  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
-
-function! s:fzf_statusline()
-  " Override statusline as you like
-  highlight fzf1 ctermfg=161 ctermbg=251
-  highlight fzf2 ctermfg=23 ctermbg=251
-  highlight fzf3 ctermfg=237 ctermbg=251
-  setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
+" An action can be a reference to a function that processes selected lines
+function! s:build_quickfix_list(lines)
+  call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+  copen
+  cc
 endfunction
 
-autocmd! User FzfStatusLine call <SID>fzf_statusline()
+let g:fzf_action = {
+  \ 'ctrl-q': function('s:build_quickfix_list'),
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
 
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-  \   fzf#vim#with_preview(), <bang>0)
+" Default fzf layout
+" - down / up / left / right
+let g:fzf_layout = { 'down': '~40%' }
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
 
+" You can set up fzf window using a Vim command (Neovim or latest Vim 8 required)
+" let g:fzf_layout = { 'window': 'enew' }
+" let g:fzf_layout = { 'window': '-tabnew' }
+" let g:fzf_layout = { 'window': '10new' }
+" See `man fzf-tmux` for available options
+" if exists('$TMUX')
+"   let g:fzf_layout = { 'tmux': '-p90%,60%' }
+" else
+"   let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+" endif
+
+" Customize fzf colors to match your color scheme
+" - fzf#wrap translates this to a set of `--color` options
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
+" Enable per-command history
+" - History files will be stored in the specified directory
+" - When set, CTRL-N and CTRL-P will be bound to 'next-history' and
+"   'previous-history' instead of 'down' and 'up'.
+let g:fzf_history_dir = '~/.local/share/fzf-history'
+" ===================================================
+"
+" ========================'fzf.vim' =====================
+nmap <Leader>p :<C-U><C-R>=printf("Files")<CR><CR>
+"
 function! RipgrepFzf(query, fullscreen)
-  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
+  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
   let initial_command = printf(command_fmt, shellescape(a:query))
   let reload_command = printf(command_fmt, '{q}')
   let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
   call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
 endfunction
+"
+" Mapping selecting mappings
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+"
+" Insert mode completion
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-l> <plug>(fzf-complete-line)
+"
+" Path completion with custom source command
+inoremap <expr> <c-x><c-f> fzf#vim#complete#path('fd')
+inoremap <expr> <c-x><c-f> fzf#vim#complete#path('rg --files')
+"
+" Word completion with custom spec with popup layout option
+inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'window': { 'width': 0.2, 'height': 0.9, 'xoffset': 1 }})
+"
+" " Replace the default dictionary completion with fzf-based fuzzy completion
+" inoremap <expr> <c-x><c-k> fzf#vim#complete('cat /usr/share/dict/words')
+" " Global line completion (not just open buffers. ripgrep required.)
+inoremap <expr> <c-x><c-l> fzf#vim#complete(fzf#wrap({
+  \ 'prefix': '^.*$',
+  \ 'source': 'rg -n ^ --color always',
+  \ 'options': '--ansi --delimiter : --nth 3..',
+  \ 'reducer': { lines -> join(split(lines[0], ':\zs')[2:], '') }}))
+"
+function! s:make_sentence(lines)
+    return substitute(join(a:lines), '^.', '\=toupper(submatch(0))', '').'.'
+endfunction
+"
+autocmd! FileType fzf set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+"
+inoremap <expr> <c-x><c-s> fzf#vim#complete({
+  \ 'source':  'cat /usr/share/dict/words',
+  \ 'reducer': function('<sid>make_sentence'),
+  \ 'options': '--multi --reverse --margin 15%,0',
+  \ 'left':    20})
 
 command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
-nmap <Leader>p :<C-U><C-R>=printf("Files")<CR><CR>
-"nmap <Leader>ag :Ag<CR>
-"nmap <Leader>p :Rg<CR>
+"
+let g:fzf_preview_window = 'right:60%'
+" " [Buffers] Jump to the existing window if possible
+let g:fzf_buffers_jump = 1
+"
+" " [[B]Commits] Customize the options used by 'git log':
+let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+"
+" " [Tags] Command to generate tags file
+let g:fzf_tags_command = 'ctags -R -f ./.tags'
+"
+" " [Commands] --expect expression for directly executing the command
+let g:fzf_commands_expect = 'alt-enter,ctrl-x'
+"
 " ====================================================
 "
 " ================== 'vim-easy-align' ================
@@ -395,6 +494,9 @@ inoremap <silent><expr> <TAB>
       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 nnoremap <silent> <space>g :<C-u>CocList<CR>
+nnoremap <silent> <space>t :<C-u>CocList grep<CR>
+nnoremap <silent> <space>f :<C-u>CocList files<CR>
+command! -nargs=+ -complete=custom,s:GrepArgs Rg exe 'CocList grep '.<q-args>
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -422,6 +524,9 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gs :call CocAction('jumpDefinition', 'split')<CR>
+nmap <silent> gv :call CocAction('jumpDefinition', 'vsplit')<CR>
+nmap <silent> gt :call CocAction('jumpDefinition', 'tabe')<CR>
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -441,13 +546,15 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <leader>rn <Plug>(coc-rename)
 
 " Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+" xmap <leader>f  <Plug>(coc-format-selected)
+" nmap <leader>f  <Plug>(coc-format-selected)
+xmap <leader>f  :call CocAction('format') <CR>
+nmap <leader>f  :call CocAction('format') <CR>
 
 augroup mygroup
   autocmd!
   " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  autocmd FileType typescript,json setl formatexpr=CocActionAsync('formatSelected')
   " Update signature help on jump placeholder.
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
@@ -476,13 +583,13 @@ omap af <Plug>(coc-funcobj-a)
 "xmap <silent> <TAB> <Plug>(coc-range-select)
 
 " Add `:Format` command to format current buffer.
-command! -nargs=0 Format :call CocAction('format')
+command! -nargs=0 Format :call CocActionAsync('format')
 
 " Add `:Fold` command to fold current buffer.
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+command! -nargs=? Fold :call     CocActionAsync('fold', <f-args>)
 
 " Add `:OR` command for organize imports of the current buffer.
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
 
 
 " Add (Neo)Vim's native statusline support.
@@ -494,7 +601,10 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " Show all diagnostics.
 nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
 " Manage extensions.
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+" nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+nnoremap <silent> <space>e :CocCommand explorer<CR>
+nnoremap <silent> <leader>nt :CocCommand explorer<CR>
+
 " Show commands.
 nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
 " Find symbol of current document.
@@ -508,15 +618,16 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
-autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+autocmd BufWritePre *.go :call CocActionAsync('runCommand', 'editor.action.organizeImport')
+nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
 " ====================================================
 "
 " =============== 'majutsushi/tagbar' ================
-nnoremap <silent> <Leader>tb :Tagbar<CR>
+" nnoremap <silent> <Leader>tb :Tagbar<CR>
 " ====================================================
 "
 " ============== 'liuchengxu/vista.vim' ==============
-"nnoremap <silent> <Leader>vt :Vista!!<CR>
+nnoremap <silent> <Leader>vt :Vista!!<CR>
 " How each level is indented and what to prepend.
 " This could make the display more compact or more spacious.
 " e.g., more compact: ["▸ ", ""]
@@ -531,7 +642,6 @@ let g:vista_default_executive = 'coc'
 " instead of the default one for these filetypes when using `:Vista` without
 " specifying the executive.
 let g:vista_executive_for = {
-  \ 'go': 'coc',
   \ }
 
 " Declare the command including the executable and options used to generate ctags output
@@ -550,7 +660,6 @@ let g:vista_fzf_preview = ['right:50%']
 let g:vista#renderer#enable_icon = 0
 
 autocmd FileType vista nnoremap <buffer> <silent> aa :<c-u>call vista#cursor#FoldOrJump()<CR>
-nnoremap <silent> <Leader>vi :Vista!!<CR>
 " ====================================================
 "
 " ================ 'Yggdroot/LeaderF' ================
@@ -617,7 +726,8 @@ nnoremap <silent> <Leader>vi :Vista!!<CR>
 "
 " ============= 'itchyny/lightline.vim' ==============
 function! LightlineFilename()
-  return expand('%:p:h')
+  return expand('%:p')
+  " return expand('%:p:h')
 endfunction
 
 function! StatusDiagnostic() abort
@@ -658,7 +768,6 @@ let g:lightline = {
    \ 'active': {
    \    'left': [
    \        ['mode', 'paste', 'gitbranch', 'buffgitstatus', 'progitstatus'],
-   \        ['filename']
    \     ],
    \    'right': [
    \        ['filetype','fileformat', 'fileencoding','lineinfo','percent'],
@@ -676,23 +785,24 @@ let g:lightline = {
    \   'statusdiagnostic': 'StatusDiagnostic',
    \ }
 \ }
-let g:lightline.tabline = {'left': [['buffers']], 'right': [['close']]}
+" \        ['filename']
 let g:lightline.component_expand = {
-      \  'buffers': 'lightline#bufferline#buffers',
       \  'linter_checking': 'lightline#ale#checking',
       \  'linter_infos': 'lightline#ale#infos',
       \  'linter_warnings': 'lightline#ale#warnings',
       \  'linter_errors': 'lightline#ale#errors',
       \  'linter_ok': 'lightline#ale#ok',
       \ }
+" \  'buffers': 'lightline#bufferline#buffers',
 let g:lightline.component_type = {
-      \     'buffer': 'tabsel',
       \     'linter_checking': 'right',
       \     'linter_infos': 'right',
       \     'linter_warnings': 'warning',
       \     'linter_errors': 'error',
       \     'linter_ok': 'right',
       \ }
+" \     'buffer': 'tabsel',
+let g:lightline.tabline = {'left': [['filename'], ['currentfunction']], 'right': [['currentfunction']]}
 
 let g:lightline#bufferline#show_number  = 1
 let g:lightline#bufferline#shorten_path = 1
@@ -723,10 +833,9 @@ autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
 "
 " ================'neoclide/coc-list' ==============
 " grep word under cursor
-command! -nargs=+ -complete=custom,s:GrepArgs Rg exe 'CocList grep '.<q-args>
 
 function! s:GrepArgs(...)
-  let list = ['-S', '-smartcase', '-i', '-ignorecase', '-w', '-word',
+  let list = ['-S', '--smart-case', '-i', '--ignore-case', '-w', '-word',
         \ '-e', '-regex', '-u', '-skip-vcs-ignores', '-t', '-extension']
   return join(list, "\n")
 endfunction
@@ -758,7 +867,7 @@ nnoremap <silent> <space>w  :exe 'CocList -I --normal --input='.expand('<cword>'
 nmap [g <Plug>(coc-git-prevchunk)
 nmap ]g <Plug>(coc-git-nextchunk)
 " show chunk diff at current position
-nmap gs <Plug>(coc-git-chunkinfo)
+" nmap gs <Plug>(coc-git-chunkinfo)
 " show commit contains current position
 nmap gc <Plug>(coc-git-commit)
 " create text object for git chunks
@@ -769,258 +878,256 @@ xmap ag <Plug>(coc-git-chunk-outer)
 " ====================================================
 "
 "" ================'Shougo/defx.nvim' ==============
-"" :h defx
-"" ---
-"" Problems? https://github.com/Shougo/defx.nvim/issues
+" :h defx
+" ---
+" Problems? https://github.com/Shougo/defx.nvim/issues
 
-"let g:maplocalleader=';'
-"nnoremap <silent> <LocalLeader>e
-"\ :<C-u>Defx -resume -toggle -buffer-name=tab`tabpagenr()`<CR>
-"nnoremap <silent> <LocalLeader>a
-"\ :<C-u>Defx -resume -buffer-name=tab`tabpagenr()` -search=`expand('%:p')`<CR>
-
-
-"call defx#custom#option('_', {
-    "\ 'winwidth': 25,
-    "\ 'split': 'vertical',
-    "\ 'direction': 'topleft',
-    "\ 'show_ignored_files': 0,
-    ""\ 'columns': 'indent:git:icons:filename',
-    "\ 'root_marker': ' ',
-    "\ 'ignored_files':
-    "\     '.mypy_cache,.pytest_cache,.git,.hg,.svn,.stversions'
-    "\   . ',__pycache__,.sass-cache,*.egg-info,.DS_Store,*.pyc'
-    "\ })
-
-"call defx#custom#column('git', {
-    "\   'indicators': {
-    "\     'Modified'  : '•',
-    "\     'Staged'    : '✚',
-    "\     'Untracked' : 'ᵁ',
-    "\     'Renamed'   : '≫',
-    "\     'Unmerged'  : '≠',
-    "\     'Ignored'   : 'ⁱ',
-    "\     'Deleted'   : '✖',
-    "\     'Unknown'   : '⁇'
-    "\   }
-    "\ })
-
-"" defx-icons plugin
-"let g:defx_icons_column_length = 2
-""let g:defx_icons_mark_icon = ''
-
-"" Internal use
-""let s:original_width = get(get(defx#custom#_get().option, '_'), 'winwidth')
-
-"" Events
-"" ---
-
-"augroup user_plugin_defx
-    "autocmd!
-
-    "" Delete defx if it's the only buffer left in the window
-    "autocmd WinEnter * if &filetype == 'defx' && winnr('$') == 1 | bdel | endif
-
-    "" Move focus to the next window if current buffer is defx
-    "autocmd TabLeave * if &filetype == 'defx' | wincmd w | endif
-
-    "" Clean Defx window once a tab-page is closed
-    "" autocmd TabClosed * call <SID>defx_close_tab(expand('<afile>'))
-
-    "" Automatically refresh opened Defx windows when changing working-directory
-    "" autocmd DirChanged * call <SID>defx_handle_dirchanged(v:event)
-
-    "" Define defx window mappings
-    "autocmd FileType defx call <SID>defx_mappings()
-
-"augroup END
-
-"" Internal functions
-"" ---
-
-"" Deprecated after disabling defx's (buf)listed
- "function! s:defx_close_tab(tabnr)
-     "" When a tab is closed, find and delete any associated defx buffers
-     "for l:nr in tabpagebuflist()
-         "if getbufvar(l:nr, '&filetype') ==# 'defx'
-             "silent! execute 'bdelete '.l:nr
-             "break
-         "endif
-     "endfor
- "endfunction
-
-"function! s:defx_toggle_tree() abort
-    "" Open current file, or toggle directory expand/collapse
-    "if defx#is_directory()
-        "return defx#do_action('open_or_close_tree')
-    "endif
-    "return defx#do_action('multi', ['drop', 'quit'])
-"endfunction
-
-"function! s:defx_handle_dirchanged(event)
-    "" Refresh opened Defx windows when changing working-directory
-    "let l:cwd = get(a:event, 'cwd', '')
-    "let l:scope = get(a:event, 'scope', '')   " global, tab, window
-    "let l:current_win = winnr()
-    "if &filetype ==# 'defx' || empty(l:cwd) || empty(l:scope)
-        "return
-    "endif
-
-    "" Find tab-page's defx window
-    "for l:nr in tabpagebuflist()
-        "if getbufvar(l:nr, '&filetype') ==# 'defx'
-            "let l:winnr = bufwinnr(l:nr)
-            "if l:winnr != -1
-                "" Change defx's window directory location
-                "if l:scope ==# 'window'
-                    "execute 'noautocmd' l:winnr . 'windo' 'lcd' l:cwd
-                "else
-                    "execute 'noautocmd' l:winnr . 'wincmd' 'w'
-                "endif
-                "call defx#call_action('cd', [ l:cwd ])
-                "execute 'noautocmd' l:current_win . 'wincmd' 'w'
-                "break
-            "endif
-        "endif
-    "endfor
-"endfunction
-
-"function! s:jump_dirty(dir) abort
-    "" Jump to the next position with defx-git dirty symbols
-    "let l:icons = get(g:, 'defx_git_indicators', {})
-    "let l:icons_pattern = join(values(l:icons), '\|')
-
-    "if ! empty(l:icons_pattern)
-        "let l:direction = a:dir > 0 ? 'w' : 'bw'
-        "return search(printf('\(%s\)', l:icons_pattern), l:direction)
-    "endif
-"endfunction
-
-"function! s:defx_mappings() abort
-    "" Defx window keyboard mappings
-    "setlocal signcolumn=no expandtab
-
-    "nnoremap <silent><buffer><expr> <CR>  <SID>defx_toggle_tree()
-    "nnoremap <silent><buffer><expr> e     <SID>defx_toggle_tree()
-    "nnoremap <silent><buffer><expr> l     <SID>defx_toggle_tree()
-    "nnoremap <silent><buffer><expr> h     defx#do_action('close_tree')
-    "nnoremap <silent><buffer><expr> t     defx#do_action('open_tree_recursive')
-    "nnoremap <silent><buffer><expr> st    defx#do_action('multi', [['drop', 'tabnew'], 'quit'])
-    "nnoremap <silent><buffer><expr> sg    defx#do_action('multi', [['drop', 'vsplit'], 'quit'])
-    "nnoremap <silent><buffer><expr> sv    defx#do_action('multi', [['drop', 'split'], 'quit'])
-    "nnoremap <silent><buffer><expr> P     defx#do_action('open', 'pedit')
-    "nnoremap <silent><buffer><expr> y     defx#do_action('yank_path')
-    "nnoremap <silent><buffer><expr> x     defx#do_action('execute_system')
-    "nnoremap <silent><buffer><expr> gx    defx#do_action('execute_system')
-    "nnoremap <silent><buffer><expr> .     defx#do_action('toggle_ignored_files')
-
-    "" Defx's buffer management
-    "nnoremap <silent><buffer><expr> q      defx#do_action('quit')
-    "nnoremap <silent><buffer><expr> se     defx#do_action('save_session')
-    "nnoremap <silent><buffer><expr> <C-r>  defx#do_action('redraw')
-    "nnoremap <silent><buffer><expr> <C-g>  defx#do_action('print')
-
-    "" File/dir management
-    "nnoremap <silent><buffer><expr><nowait> c  defx#do_action('copy')
-    "nnoremap <silent><buffer><expr><nowait> m  defx#do_action('move')
-    "nnoremap <silent><buffer><expr><nowait> p  defx#do_action('paste')
-    "nnoremap <silent><buffer><expr><nowait> r  defx#do_action('rename')
-    "nnoremap <silent><buffer><expr> dd defx#do_action('remove_trash')
-    "nnoremap <silent><buffer><expr> K  defx#do_action('new_directory')
-    "nnoremap <silent><buffer><expr> N  defx#do_action('new_multiple_files')
-
-    "" Jump
-    "nnoremap <silent><buffer>  [g :<C-u>call <SID>jump_dirty(-1)<CR>
-    "nnoremap <silent><buffer>  ]g :<C-u>call <SID>jump_dirty(1)<CR>
-
-    "" Change directory
-    "nnoremap <silent><buffer><expr><nowait> \  defx#do_action('cd', getcwd())
-    "nnoremap <silent><buffer><expr><nowait> &  defx#do_action('cd', getcwd())
-    "nnoremap <silent><buffer><expr> <BS>  defx#async_action('cd', ['..'])
-    "nnoremap <silent><buffer><expr> ~     defx#async_action('cd')
-    "nnoremap <silent><buffer><expr> u   defx#do_action('cd', ['..'])
-    "nnoremap <silent><buffer><expr> 2u  defx#do_action('cd', ['../..'])
-    "nnoremap <silent><buffer><expr> 3u  defx#do_action('cd', ['../../..'])
-    "nnoremap <silent><buffer><expr> 4u  defx#do_action('cd', ['../../../..'])
-
-    "" Selection
-    "nnoremap <silent><buffer><expr> *  defx#do_action('toggle_select_all')
-    "nnoremap <silent><buffer><expr><nowait> <Space>
-        "\ defx#do_action('toggle_select') . 'j'
-
-    "nnoremap <silent><buffer><expr> S  defx#do_action('toggle_sort', 'Time')
-    "nnoremap <silent><buffer><expr> C
-        "\ defx#do_action('toggle_columns', 'indent:mark:filename:type:size:time')
-
-    "" Tools
-    "nnoremap <silent><buffer><expr> w   defx#do_action('call', '<SID>toggle_width')
-    "nnoremap <silent><buffer><expr> gd  defx#async_action('multi', ['drop', ['call', '<SID>git_diff']])
-    "nnoremap <silent><buffer><expr> gr  defx#do_action('call', '<SID>grep')
-    "nnoremap <silent><buffer><expr> gf  defx#do_action('call', '<SID>find_files')
-    "if exists('$TMUX')
-        "nnoremap <silent><buffer><expr> gl  defx#async_action('call', '<SID>explorer')
-    "endif
-"endfunction
-
-"" TOOLS
-"" ---
-
-"function! s:git_diff(context) abort
-    "execute 'GdiffThis'
-"endfunction
-
-"function! s:find_files(context) abort
-    "" Find files in parent directory with Denite
-    "let l:target = a:context['targets'][0]
-    "let l:parent = fnamemodify(l:target, ':h')
-    "silent execute 'wincmd w'
-    "silent execute 'Denite file/rec:'.l:parent
-"endfunction
-
-"function! s:grep(context) abort
-    "" Grep in parent directory with Denite
-    "let l:target = a:context['targets'][0]
-    "let l:parent = fnamemodify(l:target, ':h')
-    "silent execute 'wincmd w'
-    "silent execute 'Denite grep:'.l:parent
-"endfunction
-
-"function! s:toggle_width(context) abort
-    "" Toggle between defx window width and longest line
-    "let l:max = 0
-    "for l:line in range(1, line('$'))
-        "let l:len = len(getline(l:line))
-        "let l:max = max([l:len, l:max])
-    "endfor
-    "let l:new = l:max == winwidth(0) ? s:original_width : l:max
-    "call defx#call_action('resize', l:new)
-"endfunction
-
-"function! s:explorer(context) abort
-    "" Open file-explorer split with tmux
-    "let l:explorer = s:find_file_explorer()
-    "if empty('$TMUX') || empty(l:explorer)
-        "return
-    "endif
-    "let l:target = a:context['targets'][0]
-    "let l:parent = fnamemodify(l:target, ':h')
-    "let l:cmd = 'split-window -p 30 -c ' . l:parent . ' ' . l:explorer
-    "silent execute '!tmux ' . l:cmd
-"endfunction
-
-"function! s:find_file_explorer() abort
-    "" Detect terminal file-explorer
-    "let s:file_explorer = get(g:, 'terminal_file_explorer', '')
-    "if empty(s:file_explorer)
-        "for l:explorer in ['lf', 'hunter', 'ranger', 'vifm']
-            "if executable(l:explorer)
-                "let s:file_explorer = l:explorer
-                "break
-            "endif
-        "endfor
-    "endif
-    "return s:file_explorer
-"endfunction
+" let g:maplocalleader=';'
+" nnoremap <silent> <LocalLeader>e
+" \ :<C-u>Defx -resume -toggle -buffer-name=tab`tabpagenr()`<CR>
+" nnoremap <silent> <LocalLeader>a
+" \ :<C-u>Defx -resume -buffer-name=tab`tabpagenr()` -search=`expand('%:p')`<CR>
+"
+" call defx#custom#option('_', {
+"     \ 'winwidth': 25,
+"     \ 'split': 'vertical',
+"     \ 'direction': 'topleft',
+"     \ 'show_ignored_files': 0,
+"     \ 'columns': 'indent:git:icons:filename',
+"     \ 'root_marker': ' ',
+"     \ 'ignored_files':
+"     \     '.mypy_cache,.pytest_cache,.git,.hg,.svn,.stversions'
+"     \   . ',__pycache__,.sass-cache,*.egg-info,.DS_Store,*.pyc'
+"     \ })
+"
+" call defx#custom#column('git', {
+"     \   'indicators': {
+"     \     'Modified'  : '•',
+"     \     'Staged'    : '✚',
+"     \     'Untracked' : 'ᵁ',
+"     \     'Renamed'   : '≫',
+"     \     'Unmerged'  : '≠',
+"     \     'Ignored'   : 'ⁱ',
+"     \     'Deleted'   : '✖',
+"     \     'Unknown'   : '⁇'
+"     \   }
+"     \ })
+"
+" " defx-icons plugin
+" let g:defx_icons_column_length = 2
+" "let g:defx_icons_mark_icon = ''
+"
+" " Internal use
+" let s:original_width = get(get(defx#custom#_get().option, '_'), 'winwidth')
+"
+" " Events
+" " ---
+"
+" augroup user_plugin_defx
+"     autocmd!
+"     " Delete defx if it's the only buffer left in the window
+"     autocmd WinEnter * if &filetype == 'defx' && winnr('$') == 1 | bdel | endif
+"
+"     " Move focus to the next window if current buffer is defx
+"     autocmd TabLeave * if &filetype == 'defx' | wincmd w | endif
+"
+"     " Clean Defx window once a tab-page is closed
+"      autocmd TabClosed * call <SID>defx_close_tab(expand('<afile>'))
+"
+"     " Automatically refresh opened Defx windows when changing working-directory
+"      autocmd DirChanged * call <SID>defx_handle_dirchanged(v:event)
+"
+"     " Define defx window mappings
+"     autocmd FileType defx call <SID>defx_mappings()
+"
+" augroup END
+"
+" " Internal functions
+" " ---
+"
+" " Deprecated after disabling defx's (buf)listed
+"  function! s:defx_close_tab(tabnr)
+"      " When a tab is closed, find and delete any associated defx buffers
+"      for l:nr in tabpagebuflist()
+"          if getbufvar(l:nr, '&filetype') ==# 'defx'
+"              silent! execute 'bdelete '.l:nr
+"              break
+"          endif
+"      endfor
+"  endfunction
+"
+" function! s:defx_toggle_tree() abort
+"     " Open current file, or toggle directory expand/collapse
+"     if defx#is_directory()
+"         return defx#do_action('open_or_close_tree')
+"     endif
+"     return defx#do_action('multi', ['drop', 'quit'])
+" endfunction
+"
+" function! s:defx_handle_dirchanged(event)
+"     " Refresh opened Defx windows when changing working-directory
+"     let l:cwd = get(a:event, 'cwd', '')
+"     let l:scope = get(a:event, 'scope', '')   " global, tab, window
+"     let l:current_win = winnr()
+"     if &filetype ==# 'defx' || empty(l:cwd) || empty(l:scope)
+"         return
+"     endif
+"
+"     " Find tab-page's defx window
+"     for l:nr in tabpagebuflist()
+"         if getbufvar(l:nr, '&filetype') ==# 'defx'
+"             let l:winnr = bufwinnr(l:nr)
+"             if l:winnr != -1
+"                 " Change defx's window directory location
+"                 if l:scope ==# 'window'
+"                     execute 'noautocmd' l:winnr . 'windo' 'lcd' l:cwd
+"                 else
+"                     execute 'noautocmd' l:winnr . 'wincmd' 'w'
+"                 endif
+"                 call defx#call_action('cd', [ l:cwd ])
+"                 execute 'noautocmd' l:current_win . 'wincmd' 'w'
+"                 break
+"             endif
+"         endif
+"     endfor
+" endfunction
+"
+" function! s:jump_dirty(dir) abort
+"     " Jump to the next position with defx-git dirty symbols
+"     let l:icons = get(g:, 'defx_git_indicators', {})
+"     let l:icons_pattern = join(values(l:icons), '\|')
+"
+"     if ! empty(l:icons_pattern)
+"         let l:direction = a:dir > 0 ? 'w' : 'bw'
+"         return search(printf('\(%s\)', l:icons_pattern), l:direction)
+"     endif
+" endfunction
+"
+" function! s:defx_mappings() abort
+"     " Defx window keyboard mappings
+"     setlocal signcolumn=no expandtab
+"
+"     nnoremap <silent><buffer><expr> <CR>  <SID>defx_toggle_tree()
+"     nnoremap <silent><buffer><expr> e     <SID>defx_toggle_tree()
+"     nnoremap <silent><buffer><expr> l     <SID>defx_toggle_tree()
+"     nnoremap <silent><buffer><expr> h     defx#do_action('close_tree')
+"     nnoremap <silent><buffer><expr> t     defx#do_action('open_tree_recursive')
+"     nnoremap <silent><buffer><expr> st    defx#do_action('multi', [['drop', 'tabnew'], 'quit'])
+"     nnoremap <silent><buffer><expr> sg    defx#do_action('multi', [['drop', 'vsplit'], 'quit'])
+"     nnoremap <silent><buffer><expr> sv    defx#do_action('multi', [['drop', 'split'], 'quit'])
+"     nnoremap <silent><buffer><expr> P     defx#do_action('open', 'pedit')
+"     nnoremap <silent><buffer><expr> y     defx#do_action('yank_path')
+"     nnoremap <silent><buffer><expr> x     defx#do_action('execute_system')
+"     nnoremap <silent><buffer><expr> gx    defx#do_action('execute_system')
+"     nnoremap <silent><buffer><expr> .     defx#do_action('toggle_ignored_files')
+"
+"     " Defx's buffer management
+"     nnoremap <silent><buffer><expr> q      defx#do_action('quit')
+"     nnoremap <silent><buffer><expr> se     defx#do_action('save_session')
+"     nnoremap <silent><buffer><expr> <C-r>  defx#do_action('redraw')
+"     nnoremap <silent><buffer><expr> <C-g>  defx#do_action('print')
+"
+"     " File/dir management
+"     nnoremap <silent><buffer><expr><nowait> c  defx#do_action('copy')
+"     nnoremap <silent><buffer><expr><nowait> m  defx#do_action('move')
+"     nnoremap <silent><buffer><expr><nowait> p  defx#do_action('paste')
+"     nnoremap <silent><buffer><expr><nowait> r  defx#do_action('rename')
+"     nnoremap <silent><buffer><expr> dd defx#do_action('remove_trash')
+"     nnoremap <silent><buffer><expr> K  defx#do_action('new_directory')
+"     nnoremap <silent><buffer><expr> N  defx#do_action('new_multiple_files')
+"
+"     " Jump
+"     nnoremap <silent><buffer>  [g :<C-u>call <SID>jump_dirty(-1)<CR>
+"     nnoremap <silent><buffer>  ]g :<C-u>call <SID>jump_dirty(1)<CR>
+"
+"     " Change directory
+"     nnoremap <silent><buffer><expr><nowait> \  defx#do_action('cd', getcwd())
+"     nnoremap <silent><buffer><expr><nowait> &  defx#do_action('cd', getcwd())
+"     nnoremap <silent><buffer><expr> <BS>  defx#async_action('cd', ['..'])
+"     nnoremap <silent><buffer><expr> ~     defx#async_action('cd')
+"     nnoremap <silent><buffer><expr> u   defx#do_action('cd', ['..'])
+"     nnoremap <silent><buffer><expr> 2u  defx#do_action('cd', ['../..'])
+"     nnoremap <silent><buffer><expr> 3u  defx#do_action('cd', ['../../..'])
+"     nnoremap <silent><buffer><expr> 4u  defx#do_action('cd', ['../../../..'])
+"
+"     " Selection
+"     nnoremap <silent><buffer><expr> *  defx#do_action('toggle_select_all')
+"     nnoremap <silent><buffer><expr><nowait> <Space>
+"         \ defx#do_action('toggle_select') . 'j'
+"
+"     nnoremap <silent><buffer><expr> S  defx#do_action('toggle_sort', 'Time')
+"     nnoremap <silent><buffer><expr> C
+"         \ defx#do_action('toggle_columns', 'indent:mark:filename:type:size:time')
+"
+"     " Tools
+"     nnoremap <silent><buffer><expr> w   defx#do_action('call', '<SID>toggle_width')
+"     nnoremap <silent><buffer><expr> gd  defx#async_action('multi', ['drop', ['call', '<SID>git_diff']])
+"     nnoremap <silent><buffer><expr> gr  defx#do_action('call', '<SID>grep')
+"     nnoremap <silent><buffer><expr> gf  defx#do_action('call', '<SID>find_files')
+"     if exists('$TMUX')
+"         nnoremap <silent><buffer><expr> gl  defx#async_action('call', '<SID>explorer')
+"     endif
+" endfunction
+"
+" " TOOLS
+" " ---
+"
+" function! s:git_diff(context) abort
+"     execute 'GdiffThis'
+" endfunction
+"
+" function! s:find_files(context) abort
+"     " Find files in parent directory with Denite
+"     let l:target = a:context['targets'][0]
+"     let l:parent = fnamemodify(l:target, ':h')
+"     silent execute 'wincmd w'
+"     silent execute 'Denite file/rec:'.l:parent
+" endfunction
+"
+" function! s:grep(context) abort
+"     " Grep in parent directory with Denite
+"     let l:target = a:context['targets'][0]
+"     let l:parent = fnamemodify(l:target, ':h')
+"     silent execute 'wincmd w'
+"     silent execute 'Denite grep:'.l:parent
+" endfunction
+"
+" function! s:toggle_width(context) abort
+"     " Toggle between defx window width and longest line
+"     let l:max = 0
+"     for l:line in range(1, line('$'))
+"         let l:len = len(getline(l:line))
+"         let l:max = max([l:len, l:max])
+"     endfor
+"     let l:new = l:max == winwidth(0) ? s:original_width : l:max
+"     call defx#call_action('resize', l:new)
+" endfunction
+"
+" function! s:explorer(context) abort
+"     " Open file-explorer split with tmux
+"     let l:explorer = s:find_file_explorer()
+"     if empty('$TMUX') || empty(l:explorer)
+"         return
+"     endif
+"     let l:target = a:context['targets'][0]
+"     let l:parent = fnamemodify(l:target, ':h')
+"     let l:cmd = 'split-window -p 30 -c ' . l:parent . ' ' . l:explorer
+"     silent execute '!tmux ' . l:cmd
+" endfunction
+"
+" function! s:find_file_explorer() abort
+"     " Detect terminal file-explorer
+"     let s:file_explorer = get(g:, 'terminal_file_explorer', '')
+"     if empty(s:file_explorer)
+"         for l:explorer in ['lf', 'hunter', 'ranger', 'vifm']
+"             if executable(l:explorer)
+"                 let s:file_explorer = l:explorer
+"                 break
+"             endif
+"         endfor
+"     endif
+"     return s:file_explorer
+" endfunction
 " ====================================================
 "
 " ================== Reset Config ===================
@@ -1033,7 +1140,8 @@ endfunction
 " 隐藏波浪线
 if has("gui_running") " GUI
     if has("gui_macvim") " MacVim
-        "set guifont=Fira\ Code\ Retina:h17
+        "set guifont=JetBrains\ Mono:h17
+        colorscheme mod8
         autocmd BufEnter * call RemoveWavyline()
         "colorscheme NeoSolarized
     elseif " Linux Or Windows Gvim
@@ -1041,7 +1149,93 @@ if has("gui_running") " GUI
 else " Terminal
     colorscheme mod8
     if has('mac') " MacOS iterm2 or termial
-        colorscheme mod8
+        " colorscheme mod8
+        " colorscheme lucario
+        " colorscheme nord
+        " colorscheme nordisk
+        " colorscheme cobalt2
+        " colorscheme materialtheme
+        " colorscheme hybrid_material
+        colorscheme hybrid_reverse
     endif " Linux termial
 endif
-" ===================================================i
+" ===================================================
+"
+" ============ 'weirongxu/coc-explorer' =============
+let g:coc_explorer_global_presets = {
+\   '.vim': {
+\      'root-uri': '~/.vim',
+\   },
+\   'floating': {
+\      'position': 'floating',
+\   },
+\   'floatingLeftside': {
+\      'position': 'floating',
+\      'floating-position': 'left-center',
+\      'floating-width': 50,
+\   },
+\   'floatingRightside': {
+\      'position': 'floating',
+\      'floating-position': 'left-center',
+\      'floating-width': 50,
+\   },
+\   'simplify': {
+\     'file.child.template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1]'
+\   }
+\ }
+
+" Use preset argument to open it
+nmap <space>ed :CocCommand explorer --preset .vim<CR>
+nmap <space>ef :CocCommand explorer --preset floating<CR>
+
+" List all presets
+nmap <space>el :CocList explPresets<CR>
+" ===================================================
+"
+" ============ 'voldikss/coc-bookmark' ==============
+"
+nmap <space>m :CocList bookmark<CR>
+nmap mj <Plug>(coc-bookmark-next)
+nmap mk <Plug>(coc-bookmark-prev)
+nmap m, <Plug>(coc-bookmark-toggle)
+"
+" ===================================================
+"
+" ============ 'neoclide/coc-snippets' ==============
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
+
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+" ===================================================
+"
+" ============== 'iamcco/coc-actions' ===============
+" Remap for do codeAction of selected region
+" function! s:cocActionsOpenFromSelected(type) abort
+"   execute 'CocCommand actions.open ' . a:type
+" endfunction
+" xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
+" nmap <silent> <leader>a :<C-u>set operatorfunc=SID>cocActionsOpenFromSelected<CR>
+" ===================================================
