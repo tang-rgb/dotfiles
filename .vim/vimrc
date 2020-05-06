@@ -17,16 +17,28 @@
 "" ===================================================
 ""
 "" ================== Basic Config ===================
+set tags=./.tags;,.tags
 " for large files
 syntax on
-set redrawtime=100000
 set mmp=100000
+set regexpengine=1
+set redrawtime=100000
+set ttimeout
+set ttimeoutlen=0
+set nottimeout
 set synmaxcol=2048
+set lazyredraw
+set ttyfast
+syntax sync minlines=128
+let loaded_matchparen = 1
 
 set path+=**
 set mouse=v             " mouse=a: 使用鼠标选择区域复制到选择缓冲区; mouse=v: 使用鼠标复制内容到剪切板
 set scrolloff=4         " 光标和屏幕上线保持4行距离
 set autoread            " 文件变化，vim自动reload
+au CursorHold,CursorHoldI * checktime
+au FocusGained,BufEnter * :checktime
+
 set noswapfile          " 不创建 swap 文件
 set nobk                " 不创建备份文件
 set updatetime=300      " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable delays and poor user experience.
@@ -51,12 +63,13 @@ set nrformats=          " 把文件中所有数字当成十进制来处理
 set showmatch           " 自动高亮匹配的括号
 set tabpagemax=30       " VIM 默认最大第打开 tab 最大数量
 set nu
-"set cuc 列线
-set cuc
-"set cul 行线
-set cul
-set cc=100
-set rnu " set relative_numbser
+" set cuc 列线
+" set cuc
+" set cul 行线
+" set cul
+set cc=80
+" set rnu " set relative_numbser
+set nornu
 set ru " set ruler
 set showcmd " 右下角显示指令
 "set t_Co=256
@@ -79,7 +92,8 @@ filetype on
 filetype plugin indent on
 filetype indent on
 set autoindent
-set foldmethod=syntax
+" set foldmethod=syntax
+set complete=.
 set nofoldenable
 set smartindent
 set smarttab
@@ -88,7 +102,7 @@ set softtabstop=4
 set tabstop=4
 set linebreak
 set nolist
-set textwidth=0       " 设置多少列开始换行，0 表示不限制
+set textwidth=80       " 设置多少列开始换行，0 表示不限制
 set expandtab
 "%retab               " 加!是用于处理非空白字符之后的TAB， 即所有的TAB；若不加，则只处理行首的TAB
 %retab!
@@ -156,8 +170,8 @@ augroup END
 " ==================== Key Map ======================
 "
 let mapleader=";"
-nmap <leader>b  :buffers<CR>
-cnoremap ls ls<cr>:b<space>
+nmap <leader>b  :Buffers<CR>
+" cnoremap ls ls<cr>:b<space>
 nnoremap gj j
 nnoremap gk k
 nnoremap j gj
