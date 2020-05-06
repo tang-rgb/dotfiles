@@ -1,24 +1,62 @@
 {
-  "go.goplsOptions": {
-    "usePlaceholders": false,
-    "hoverKind": "FullDocumentation",
-    "staticcheck": true,
-    "completeUnimported": true,
-    "deepCompletion": true,
-    "completionDocumentation": true,
-    "fuzzyMatching": true,
-    "analyses": {
-      "unreachable": false,
-      "unusedparams": true
+  "languageserver": {
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": [
+        "go.mod",
+        ".vim/",
+        ".git/",
+        ".hg/"
+      ],
+      "filetypes": [
+        "go"
+      ],
+      "initializationOptions": {
+        "usePlaceholders": false,
+        "hoverKind": "SynopsisDocumentation",
+        "staticcheck": true,
+        "completeUnimported": true,
+        "deepCompletion": true,
+        "completionDocumentation": true,
+        "fuzzyMatching": true,
+        "analyses": {
+          "unreachable": true,
+          "unusedparams": true,
+          "fillreturns": true,
+          "nonewvars": true,
+          "undeclaredname": true
+        }
+      }
     }
   },
-  "coc.preferences.formatOnSaveFiletypes": [
-    "css",
-    "markdown",
-    "rust",
-    "go",
-    "json"
-  ],
+  "coc.preferences.formatOnSaveFiletypes": ["go", "rust"],
   "git.enableGutters": true,
-  "git.addGBlameToBufferVar": false
+  "git.addGBlameToBufferVar": false,
+  "cSpell.enabledLanguageIds": [
+    "go",
+    "javascript",
+    "javascriptreact",
+    "markdown",
+    "plaintext",
+    "typescript",
+    "typescriptreact",
+    "yml"
+  ],
+  "cSpell.ignorePaths": [
+    "node_modules",
+    "**/node_modules",
+    "**/node_modules/**",
+    "node_modules/**",
+    "vscode-extension",
+    ".git",
+    "*.dll",
+    "**/*.dll"
+  ],
+  "cSpell.showStatus": true,
+  "cSpell.allowCompoundWords": true,
+  "cSpell.ignoreWords": [
+    "grpc",
+    "ucommon",
+    "ucore"
+  ]
 }

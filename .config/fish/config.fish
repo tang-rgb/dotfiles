@@ -11,6 +11,7 @@ switch (uname)
 case 'Darwin'
     alias vim '/Applications/MacVim.app/Contents/bin/vim'
     #alias tmux 'tmux -u'
+    nvm use default
 case 'Linux'
     alias pbcopy 'xsel --clipboard --input'
     alias pbpaste 'xsel --clipboard --output'
@@ -18,6 +19,7 @@ case 'Linux'
 case "*"
     echo "unknowon os"
 end
+
 
 # ========= alias =========
 alias ll='ls -l'
@@ -41,7 +43,8 @@ alias shellcleanproxy "export all_proxy=; export http_proxy=; export https_proxy
 alias gitusehttpproxy "git config --global http.proxy '127.0.0.1:1087'; git config --global https.proxy '127.0.0.1:1087'"
 alias gitusesocks5proxy "git config --global http.proxy 'socks5://127.0.0.1:1080'; git config --global https.proxy 'socks5://127.0.0.1:1080'"
 alias gitcleanproxy "git config --global http.proxy ''; git config --global https.proxy ''"
-alias gitfix 'git diff --name-only | uniq | xargs code-insiders'
+alias gitfix 'git diff --name-only | uniq | xargs nvim '
+alias codefix 'git diff --name-only | uniq | xargs code '
 alias gitdiff 'git difftool'
 
 # ========== Env Vars ==========
@@ -53,6 +56,9 @@ if test -s "$GOPATH/bin/powerline-go"       # Powerline-go
         powerline-go -error $status -shell bare -newline -colorize-hostname
     end
 end
+export GOPROXY=goproxy.cn,goproxy.io,direct 
+export GONOSUMDB=actiontech.cloud
+
 bass source ~/.gvm/environments/default
 
 # local bin
@@ -98,3 +104,5 @@ end
 if test -d "$HOME/.gem/ruby/2.7.0/bin/"
     set -gx PATH "$HOME/.gem/ruby/2.7.0/bin/" $PATH
 end
+
+status --is-interactive; and source (pyenv init -|psub)
