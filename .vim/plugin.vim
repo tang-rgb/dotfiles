@@ -25,7 +25,7 @@ set rtp+=/usr/local/opt/fzf
 " ===================================================
 "
 " ==================== Vim-plug =====================
-call plug#begin('~/.vm/plugged')
+call plug#begin('~/.vim/plugged')
 
 " Basic plugin =================
 if has('nvim')
@@ -318,62 +318,132 @@ let g:NERDToggleCheckAllLines = 1
 " ===================================================
 "
 " ========================'fzf' =====================
-nmap <leader><tab> <plug>(fzf-maps-n)
-xmap <leader><tab> <plug>(fzf-maps-x)
-omap <leader><tab> <plug>(fzf-maps-o)
-imap <c-x><c-k> <plug>(fzf-complete-word)
-imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-imap <c-x><c-l> <plug>(fzf-complete-line)
-inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
-" Empty value to disable preview window altogether
-let g:fzf_preview_window = ''
+command! -bang LS call fzf#run(fzf#wrap({'source': 'ls'}, <bang>0))
 
-" Always enable preview window on the right with 60% width
-let g:fzf_preview_window = 'right:60%'
-" [Buffers] Jump to the existing window if possible
-let g:fzf_buffers_jump = 1
+" This is the default extra key bindings
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
 
-" [[B]Commits] Customize the options used by 'git log':
-let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
-
-" [Tags] Command to generate tags file
-let g:fzf_tags_command = 'ctags -R'
-
-" [Commands] --expect expression for directly executing the command
-let g:fzf_commands_expect = 'alt-enter,ctrl-x'
-inoremap <expr> <c-x><c-k> fzf#vim#complete('cat /usr/share/dict/words')
-
-autocmd! FileType fzf set laststatus=0 noshowmode noruler
-  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
-
-function! s:fzf_statusline()
-  " Override statusline as you like
-  highlight fzf1 ctermfg=161 ctermbg=251
-  highlight fzf2 ctermfg=23 ctermbg=251
-  highlight fzf3 ctermfg=237 ctermbg=251
-  setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
+" An action can be a reference to a function that processes selected lines
+function! s:build_quickfix_list(lines)
+  call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+  copen
+  cc
 endfunction
 
-autocmd! User FzfStatusLine call <SID>fzf_statusline()
+let g:fzf_action = {
+  \ 'ctrl-q': function('s:build_quickfix_list'),
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
 
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-  \   fzf#vim#with_preview(), <bang>0)
+" Default fzf layout
+" - down / up / left / right
+let g:fzf_layout = { 'down': '~40%' }
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
 
+" You can set up fzf window using a Vim command (Neovim or latest Vim 8 required)
+" let g:fzf_layout = { 'window': 'enew' }
+" let g:fzf_layout = { 'window': '-tabnew' }
+" let g:fzf_layout = { 'window': '10new' }
+" See `man fzf-tmux` for available options
+" if exists('$TMUX')
+"   let g:fzf_layout = { 'tmux': '-p90%,60%' }
+" else
+"   let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+" endif
+
+" Customize fzf colors to match your color scheme
+" - fzf#wrap translates this to a set of `--color` options
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
+" Enable per-command history
+" - History files will be stored in the specified directory
+" - When set, CTRL-N and CTRL-P will be bound to 'next-history' and
+"   'previous-history' instead of 'down' and 'up'.
+let g:fzf_history_dir = '~/.local/share/fzf-history'
+" ===================================================
+"
+" ========================'fzf.vim' =====================
+nmap <Leader>p :<C-U><C-R>=printf("Files")<CR><CR>
+"
 function! RipgrepFzf(query, fullscreen)
-  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
+  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
   let initial_command = printf(command_fmt, shellescape(a:query))
   let reload_command = printf(command_fmt, '{q}')
   let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
   call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
 endfunction
+"
+" Mapping selecting mappings
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+"
+" Insert mode completion
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-l> <plug>(fzf-complete-line)
+"
+" Path completion with custom source command
+inoremap <expr> <c-x><c-f> fzf#vim#complete#path('fd')
+inoremap <expr> <c-x><c-f> fzf#vim#complete#path('rg --files')
+"
+" Word completion with custom spec with popup layout option
+inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'window': { 'width': 0.2, 'height': 0.9, 'xoffset': 1 }})
+"
+" " Replace the default dictionary completion with fzf-based fuzzy completion
+" inoremap <expr> <c-x><c-k> fzf#vim#complete('cat /usr/share/dict/words')
+" " Global line completion (not just open buffers. ripgrep required.)
+inoremap <expr> <c-x><c-l> fzf#vim#complete(fzf#wrap({
+  \ 'prefix': '^.*$',
+  \ 'source': 'rg -n ^ --color always',
+  \ 'options': '--ansi --delimiter : --nth 3..',
+  \ 'reducer': { lines -> join(split(lines[0], ':\zs')[2:], '') }}))
+"
+function! s:make_sentence(lines)
+    return substitute(join(a:lines), '^.', '\=toupper(submatch(0))', '').'.'
+endfunction
+"
+autocmd! FileType fzf set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+"
+inoremap <expr> <c-x><c-s> fzf#vim#complete({
+  \ 'source':  'cat /usr/share/dict/words',
+  \ 'reducer': function('<sid>make_sentence'),
+  \ 'options': '--multi --reverse --margin 15%,0',
+  \ 'left':    20})
 
 command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
-nmap <Leader>p :<C-U><C-R>=printf("Files")<CR><CR>
-"nmap <Leader>ag :Ag<CR>
-"nmap <Leader>p :Rg<CR>
+"
+let g:fzf_preview_window = 'right:60%'
+" " [Buffers] Jump to the existing window if possible
+let g:fzf_buffers_jump = 1
+"
+" " [[B]Commits] Customize the options used by 'git log':
+let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+"
+" " [Tags] Command to generate tags file
+let g:fzf_tags_command = 'ctags -R'
+"
+" " [Commands] --expect expression for directly executing the command
+let g:fzf_commands_expect = 'alt-enter,ctrl-x'
+"
 " ====================================================
 "
 " ================== 'vim-easy-align' ================
