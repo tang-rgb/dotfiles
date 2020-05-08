@@ -531,7 +531,6 @@ let g:vista_default_executive = 'coc'
 " instead of the default one for these filetypes when using `:Vista` without
 " specifying the executive.
 let g:vista_executive_for = {
-  \ 'go': 'coc',
   \ }
 
 " Declare the command including the executable and options used to generate ctags output

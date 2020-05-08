@@ -156,7 +156,7 @@ augroup END
 " ==================== Key Map ======================
 "
 let mapleader=";"
-nmap <leader>b  :buffers<CR>
+nmap <leader>b  :Buffers<CR>
 cnoremap ls ls<cr>:b<space>
 nnoremap gj j
 nnoremap gk k
