@@ -25,6 +25,7 @@ set synmaxcol=2048
 set lazyredraw
 set ttyfast
 syntax sync minlines=128
+let loaded_matchparen = 1
 
 set path+=**
 set mouse=v             " mouse=a: 使用鼠标选择区域复制到选择缓冲区; mouse=v: 使用鼠标复制内容到剪切板
