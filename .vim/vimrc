@@ -19,9 +19,11 @@
 "" ================== Basic Config ===================
 " for large files
 syntax on
-set redrawtime=100000
 set mmp=100000
+set redrawtime=100000
 set synmaxcol=2048
+set lazyredraw
+syntax sync minlines=128
 
 set path+=**
 set mouse=v             " mouse=a: 使用鼠标选择区域复制到选择缓冲区; mouse=v: 使用鼠标复制内容到剪切板
@@ -51,11 +53,11 @@ set nrformats=          " 把文件中所有数字当成十进制来处理
 set showmatch           " 自动高亮匹配的括号
 set tabpagemax=30       " VIM 默认最大第打开 tab 最大数量
 set nu
-"set cuc 列线
-set cuc
-"set cul 行线
-set cul
-set cc=100
+" set cuc 列线
+" set cuc
+" set cul 行线
+" set cul
+" set cc=100
 set rnu " set relative_numbser
 set ru " set ruler
 set showcmd " 右下角显示指令
