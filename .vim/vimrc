@@ -23,6 +23,7 @@ set mmp=100000
 set redrawtime=100000
 set synmaxcol=2048
 set lazyredraw
+set ttyfast
 syntax sync minlines=128
 
 set path+=**
