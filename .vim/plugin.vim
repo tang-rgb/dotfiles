@@ -220,14 +220,14 @@ nmap <Leader>cp :cprevious<CR> " 跳转上一项
 " ===================================================
 "
 " =============== 'ense-analysis/ale' ===============
+" \   'rust': ['rustfmt']
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['eslint'],
-\   'rust': ['rustfmt']
 \}
+" \  'rust': ['rls', 'cargo', 'rustc']
 let g:ale_linters = {
 \  'javascript': ['eslint'],
-\  'rust': ['rls', 'cargo', 'rustc']
 \}
 let g:ale_linters_explicit = 1
 let g:ale_completion_enabled = 0   " 自动补全
