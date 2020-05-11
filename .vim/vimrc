@@ -27,6 +27,9 @@ set path+=**
 set mouse=v             " mouse=a: 使用鼠标选择区域复制到选择缓冲区; mouse=v: 使用鼠标复制内容到剪切板
 set scrolloff=4         " 光标和屏幕上线保持4行距离
 set autoread            " 文件变化，vim自动reload
+au CursorHold,CursorHoldI * checktime
+au FocusGained,BufEnter * :checktime
+
 set noswapfile          " 不创建 swap 文件
 set nobk                " 不创建备份文件
 set updatetime=300      " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable delays and poor user experience.
