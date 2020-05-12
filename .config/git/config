@@ -9,19 +9,19 @@ fix        = diff --name-only | uniq | xargs nvim  # 处理冲突文件
 
 
 # Abbr
-a          = add
-b          = branch
-bm         = branch --merged
-bd         = branch -d
-br         = branch -r
-rv         = remote -v
-cm         = commit
-co         = checkout
-cb         = checkout -b
-s          = status
-m          = merge
-d          = difftool
-u          = pull --all
+; a          = add
+; b          = branch
+; bm         = branch --merged
+; bd         = branch -d
+; br         = branch -r
+; rv         = remote -v
+; cm         = commit
+; co         = checkout
+; cb         = checkout -b
+; s          = status
+; m          = merge
+; d          = difftool
+; u          = pull --all
 
 [user]
 name       = jessun
