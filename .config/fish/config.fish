@@ -41,7 +41,7 @@ alias shellcleanproxy "export all_proxy=; export http_proxy=; export https_proxy
 alias gitusehttpproxy "git config --global http.proxy '127.0.0.1:1087'; git config --global https.proxy '127.0.0.1:1087'"
 alias gitusesocks5proxy "git config --global http.proxy 'socks5://127.0.0.1:1080'; git config --global https.proxy 'socks5://127.0.0.1:1080'"
 alias gitcleanproxy "git config --global http.proxy ''; git config --global https.proxy ''"
-alias gitfix 'git diff --name-only | uniq | xargs code-insiders'
+alias gitfix 'git diff --name-only | uniq | xargs code '
 alias gitdiff 'git difftool'
 
 # ========== Env Vars ==========
