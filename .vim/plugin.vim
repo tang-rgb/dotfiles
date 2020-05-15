@@ -55,6 +55,7 @@ Plug 'junegunn/fzf.vim'
 "Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'tommcdo/vim-fugitive-blame-ext' " git 信息
 Plug 'tpope/vim-fugitive'             " git 相关
+Plug 'codeape2/vim-multiple-monitors'
 
 " code ========================
 Plug 'liuchengxu/vista.vim' " tag
@@ -65,7 +66,7 @@ Plug 'kshenoy/vim-signature'
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " 补全
 Plug 'scrooloose/nerdcommenter'       " 注释
 Plug 'tpope/vim-surround'             " 快捷操作
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 'markdown' }
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
 
 " wxminiapp ===================
 " Plug 'chemzqm/wxapp.vim'
@@ -81,7 +82,9 @@ call plug#end()
 "
 " set to 1, nvim will open the preview window after entering the markdown buffer
 " default: 0
-let g:mkdp_auto_start = 0
+let g:mkdp_auto_start = 1
+
+let g:mkdp_browserfunc = 'g:open_browser'
 
 " set to 1, the nvim will auto close current preview window when change
 " from markdown buffer to another buffer
@@ -142,7 +145,7 @@ let g:mkdp_preview_options = {
     \ 'maid': {},
     \ 'disable_sync_scroll': 0,
     \ 'sync_scroll_type': 'middle',
-    \ 'hide_yaml_meta': 1,
+    \ 'hide_yaml_meta': 0,
     \ 'sequence_diagrams': {},
     \ 'flowchart_diagrams': {}
     \ }
@@ -221,11 +224,13 @@ nmap <Leader>cp :cprevious<CR> " 跳转上一项
 "
 " =============== 'ense-analysis/ale' ===============
 " \   'rust': ['rustfmt']
+" \   'go': ['gofmt', 'goimports', 'gomod'],
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['eslint'],
 \}
 " \  'rust': ['rls', 'cargo', 'rustc']
+" \  'go': ['gopls'],
 let g:ale_linters = {
 \  'javascript': ['eslint'],
 \}
@@ -1102,7 +1107,8 @@ endfunction
 " 隐藏波浪线
 if has("gui_running") " GUI
     if has("gui_macvim") " MacVim
-        "set guifont=Fira\ Code\ Retina:h17
+        set guifont=JetBrains\ Mono:h17
+        colorscheme mod8
         autocmd BufEnter * call RemoveWavyline()
         "colorscheme NeoSolarized
     elseif " Linux Or Windows Gvim
