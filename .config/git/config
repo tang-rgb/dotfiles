@@ -24,8 +24,8 @@ fix        = diff --name-only | uniq | xargs nvim  # 处理冲突文件
 ; u          = pull --all
 
 [user]
-name       = jessun
-email      = jesun1990@outlook.com
+name       = zhangqiang
+email      = zhangqiang@actionsky.com
 
 [core]
 editor     = "nvim"
