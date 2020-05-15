@@ -101,3 +101,4 @@ if test -d "$HOME/.gem/ruby/2.7.0/bin/"
 end
 
 nvm use default
+status --is-interactive; and source (pyenv init -|psub)
