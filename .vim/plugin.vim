@@ -55,7 +55,6 @@ Plug 'junegunn/fzf.vim'
 "Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'tommcdo/vim-fugitive-blame-ext' " git 信息
 Plug 'tpope/vim-fugitive'             " git 相关
-Plug 'codeape2/vim-multiple-monitors'
 
 " code ========================
 Plug 'liuchengxu/vista.vim' " tag
