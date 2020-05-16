@@ -19,6 +19,7 @@ case "*"
     echo "unknowon os"
 end
 
+
 # ========= alias =========
 alias ll='ls -l'
 alias la='ls -a'
@@ -98,3 +99,6 @@ end
 if test -d "$HOME/.gem/ruby/2.7.0/bin/"
     set -gx PATH "$HOME/.gem/ruby/2.7.0/bin/" $PATH
 end
+
+nvm use default
+status --is-interactive; and source (pyenv init -|psub)
