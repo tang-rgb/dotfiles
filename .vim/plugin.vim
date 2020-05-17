@@ -585,6 +585,8 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+
+autocmd BufLeave,VimLeavePre *.* :call CocAction('format')
 " ====================================================
 "
 " =============== 'majutsushi/tagbar' ================
