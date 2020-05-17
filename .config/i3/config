@@ -220,7 +220,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id blueberry-tray
 exec --no-startup-id volumeicon
 exec --no-startup-id copyq
-# exec --no-startup-id ss-qt5
+exec --no-startup-id ss-qt5
 exec --no-startup-id ibus-daemon -x -d
 exec --no-startup-id megasync
 # exec --no-startup-id evolution
@@ -229,6 +229,9 @@ exec --no-startup-id utools
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id /$HOME/.config/polybar/launch.sh
 exec --no-startup-id /$HOME/.local/init.sh
+
+exec --no-startup-id greenclip daemon
+bindsym $mod+Ctrl+v exec rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
 
 bar {
     i3bar_command i3bar
