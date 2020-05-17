@@ -44,7 +44,7 @@ Plug 'dense-analysis/ale'
 Plug 'flazz/vim-colorschemes'        " 配色主题
 "Plug 'rafi/awesome-vim-colorschemes' " 配色主题
 Plug 'itchyny/lightline.vim'
-Plug 'mengelbrecht/lightline-bufferline'
+" Plug 'mengelbrecht/lightline-bufferline'
 
 " general =====================
 "Plug 'asins/vimcdoc'
@@ -304,23 +304,23 @@ highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
 " "endif
 " " ===================================================
 " "
-" " ============='scrooloose/nerdcommenter' ===========
-" " Add spaces after comment delimiters by default
-" let g:NERDSpaceDelims = 1
-" " Use compact syntax for prettified multi-line comments
-" let g:NERDCompactSexyComs = 1
-" " Align line-wise comment delimiters flush left instead of following code indentation
-" let g:NERDDefaultAlign = 'left'
-" " Set a language to use its alternate delimiters by default
-" let g:NERDAltDelims_java = 1
-" " Add your own custom formats or override the defaults
-" let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
-" " Allow commenting and inverting empty lines (useful when commenting a region)
-" let g:NERDCommentEmptyLines = 1
-" " Enable trimming of trailing whitespace when uncommenting
-" let g:NERDTrimTrailingWhitespace = 1
-" " Enable NERDCommenterToggle to check all selected lines is commented or not
-" let g:NERDToggleCheckAllLines = 1
+" ============='scrooloose/nerdcommenter' ===========
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+" Set a language to use its alternate delimiters by default
+let g:NERDAltDelims_java = 1
+" Add your own custom formats or override the defaults
+let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+" Enable NERDCommenterToggle to check all selected lines is commented or not
+let g:NERDToggleCheckAllLines = 1
 " ===================================================
 "
 " ========================'fzf' =====================
@@ -517,8 +517,10 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <leader>rn <Plug>(coc-rename)
 
 " Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+" xmap <leader>f  <Plug>(coc-format-selected)
+" nmap <leader>f  <Plug>(coc-format-selected)
+xmap <leader>f  :call CocAction('format') <CR>
+nmap <leader>f  :call CocAction('format') <CR>
 
 augroup mygroup
   autocmd!
@@ -753,7 +755,6 @@ let g:lightline = {
    \   'statusdiagnostic': 'StatusDiagnostic',
    \ }
 \ }
-let g:lightline.tabline = {'left': [['buffers']], 'right': [['close']]}
 let g:lightline.component_expand = {
       \  'buffers': 'lightline#bufferline#buffers',
       \  'linter_checking': 'lightline#ale#checking',
@@ -770,6 +771,7 @@ let g:lightline.component_type = {
       \     'linter_errors': 'error',
       \     'linter_ok': 'right',
       \ }
+" let g:lightline.tabline = {'left': [['buffers']]}
 
 let g:lightline#bufferline#show_number  = 1
 let g:lightline#bufferline#shorten_path = 1
@@ -1121,3 +1123,4 @@ else " Terminal
     endif " Linux termial
 endif
 " ===================================================i
+"
