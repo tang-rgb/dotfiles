@@ -215,11 +215,11 @@ let g:go_highlight_variable_declarations = 1
 " au FileType go nmap <leader>gr <Plug>(go-run)
 " au FileType go nmap <leader>gt <Plug>(go-test)
 " let g:go_list_type = "quickfix"
-nmap <Leader>cw :cw 5<CR>  " 打开 quickfix 列表
-nmap <Leader>nn :cnext<CR> "
-nmap <Leader>cn :cnext<CR> " 跳转下一项
-nmap <Leader>mm :cprevious<CR>
-nmap <Leader>cp :cprevious<CR> " 跳转上一项
+" nmap <Leader>cw :cw 5<CR>  " 打开 quickfix 列表
+" nmap <Leader>nn :cnext<CR> "
+" nmap <Leader>cn :cnext<CR> " 跳转下一项
+" nmap <Leader>mm :cprevious<CR>
+" nmap <Leader>cp :cprevious<CR> " 跳转上一项
 " ===================================================
 "
 " =============== 'ense-analysis/ale' ===============
@@ -584,6 +584,7 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+autocmd BufLeave,VimLeavePre *.go :call CocAction('format')
 " ====================================================
 "
 " =============== 'majutsushi/tagbar' ================
