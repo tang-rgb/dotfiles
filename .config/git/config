@@ -24,8 +24,8 @@ fix        = diff --name-only | uniq | xargs nvim  # 处理冲突文件
 ; u          = pull --all
 
 [user]
-name       = zhangqiang
-email      = zhangqiang@actionsky.com
+	name = Jessun
+	email = jessun1990@gmail.com
 
 [core]
 editor     = "nvim"
@@ -39,6 +39,6 @@ cmd        = code --wait --diff $LOCAL $REMOTE -y
 [difftool]
 prompt     = No
 [http]
-proxy      =
+	proxy = socks5://127.0.0.1:1080
 [https]
-proxy      =
+	proxy = socks5://127.0.0.1:1080

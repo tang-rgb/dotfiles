@@ -165,7 +165,7 @@ augroup END
 "
 let mapleader=";"
 nmap <leader>b  :Buffers<CR>
-cnoremap ls ls<cr>:b<space>
+" cnoremap ls ls<cr>:b<space>
 nnoremap gj j
 nnoremap gk k
 nnoremap j gj
