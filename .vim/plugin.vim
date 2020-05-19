@@ -48,13 +48,13 @@ Plug 'itchyny/lightline.vim'
 
 " general =====================
 "Plug 'asins/vimcdoc'
-" Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 "Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'ryanoasis/vim-devicons'
-Plug 'kristijanhusak/defx-icons'
+" Plug 'ryanoasis/vim-devicons'
+" Plug 'kristijanhusak/defx-icons'
 Plug 'tommcdo/vim-fugitive-blame-ext' " git 信息
 Plug 'tpope/vim-fugitive'             " git 相关
 
@@ -265,43 +265,43 @@ highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
 " ===================================================
 "
 " ============== 'scrooloose/nerdtree' ==============
-" nmap <leader>nt :NERDTreeToggle<CR>
-" let NERDTreeShowHidden=1  " 显示隐藏文件
-" let NERDTreeMapOpenIntab='\r'
-" let NERDTreeMinimalUI=1   " 去除第一行的帮助提示
-" let NERDTreeWinSize=30    " 在左边占多宽
-" let NERDTreeChDirMode = 2 " 当前目录的设定
-" "自动退出
-" autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeType == "primary") | q | endif
-" "autocmd vimenter * NERDTree "打开vim时自动打开
-" let g:NERDTreeIndicatorMapCustom = {
-"     \ "Modified"  : "✹",
-"     \ "Staged"    : "✚",
-"     \ "Untracked" : "✭",
-"     \ "Renamed"   : "➜",
-"     \ "Unmerged"  : "═",
-"     \ "Deleted"   : "✖",
-"     \ "Dirty"     : "✗",
-"     \ "Clean"     : "✔︎",
-"     \ 'Ignored'   : '☒',
-"     \ "Unknown"   : "?",
-"     \ }
-" " ===================================================
-" "
-" " =============== 'rust-lang/rust.vim' ==============
-" " 开启rust的自动reformat的功能，这2个命令底层都是rustfmt
-" " 区别在于rustfmt需要指定文件，在vim里就是当前文件
-" "let g:rustfmt_command = 'rustfmt'
-" "let g:rustfmt_command = 'cargo-fmt --all --'
-" "let g:rustfmt_options = ''
-" "let g:rustfmt_autosave = 1 "保存的时候自动格式化
-" "let g:rust_recommended_style = 1
-" "let g:rust_playpen_url = 'https://play.rust-lang.org/'
-" "if has('mac')
-"     "let g:rust_clip_command = 'pbcopy'
-" "else
-"     "let g:rust_clip_command = 'xclip -selection clipboard'
-" "endif
+nmap <leader>nt :NERDTreeToggle<CR>
+let NERDTreeShowHidden=1  " 显示隐藏文件
+let NERDTreeMapOpenIntab='\r'
+let NERDTreeMinimalUI=1   " 去除第一行的帮助提示
+let NERDTreeWinSize=30    " 在左边占多宽
+let NERDTreeChDirMode = 2 " 当前目录的设定
+"自动退出
+autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeType == "primary") | q | endif
+"autocmd vimenter * NERDTree "打开vim时自动打开
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?",
+    \ }
+" ===================================================
+"
+" =============== 'rust-lang/rust.vim' ==============
+" 开启rust的自动reformat的功能，这2个命令底层都是rustfmt
+" 区别在于rustfmt需要指定文件，在vim里就是当前文件
+"let g:rustfmt_command = 'rustfmt'
+"let g:rustfmt_command = 'cargo-fmt --all --'
+"let g:rustfmt_options = ''
+"let g:rustfmt_autosave = 1 "保存的时候自动格式化
+"let g:rust_recommended_style = 1
+"let g:rust_playpen_url = 'https://play.rust-lang.org/'
+"if has('mac')
+    "let g:rust_clip_command = 'pbcopy'
+"else
+    "let g:rust_clip_command = 'xclip -selection clipboard'
+"endif
 " " ===================================================
 " "
 " ============='scrooloose/nerdcommenter' ===========
@@ -586,9 +586,8 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
-autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
-
-autocmd BufLeave,VimLeavePre *.* :call CocAction('format')
+autocmd BufWritePre,BufLeave,VimLeavePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+autocmd BufLeave,VimLeavePre *.go :call CocAction('format')
 " ====================================================
 "
 " =============== 'majutsushi/tagbar' ================
@@ -696,7 +695,8 @@ nnoremap <silent> <Leader>vi :Vista!!<CR>
 "
 " ============= 'itchyny/lightline.vim' ==============
 function! LightlineFilename()
-  return expand('%:p:h')
+  return expand('%:p')
+  " return expand('%:p:h')
 endfunction
 
 function! StatusDiagnostic() abort
@@ -737,7 +737,6 @@ let g:lightline = {
    \ 'active': {
    \    'left': [
    \        ['mode', 'paste', 'gitbranch', 'buffgitstatus', 'progitstatus'],
-   \        ['filename']
    \     ],
    \    'right': [
    \        ['filetype','fileformat', 'fileencoding','lineinfo','percent'],
@@ -755,23 +754,24 @@ let g:lightline = {
    \   'statusdiagnostic': 'StatusDiagnostic',
    \ }
 \ }
+" \        ['filename']
 let g:lightline.component_expand = {
-      \  'buffers': 'lightline#bufferline#buffers',
       \  'linter_checking': 'lightline#ale#checking',
       \  'linter_infos': 'lightline#ale#infos',
       \  'linter_warnings': 'lightline#ale#warnings',
       \  'linter_errors': 'lightline#ale#errors',
       \  'linter_ok': 'lightline#ale#ok',
       \ }
+" \  'buffers': 'lightline#bufferline#buffers',
 let g:lightline.component_type = {
-      \     'buffer': 'tabsel',
       \     'linter_checking': 'right',
       \     'linter_infos': 'right',
       \     'linter_warnings': 'warning',
       \     'linter_errors': 'error',
       \     'linter_ok': 'right',
       \ }
-" let g:lightline.tabline = {'left': [['buffers']]}
+" \     'buffer': 'tabsel',
+let g:lightline.tabline = {'left': [['filename']]}
 
 let g:lightline#bufferline#show_number  = 1
 let g:lightline#bufferline#shorten_path = 1
