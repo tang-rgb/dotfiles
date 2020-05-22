@@ -55,6 +55,9 @@ if test -s "$GOPATH/bin/powerline-go"       # Powerline-go
         powerline-go -error $status -shell bare -newline -colorize-hostname
     end
 end
+export GOPROXY=goproxy.cn,goproxy.io,direct 
+export GONOSUMDB=actiontech.cloud
+
 bass source ~/.gvm/environments/default
 
 # local bin
