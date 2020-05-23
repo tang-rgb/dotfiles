@@ -11,6 +11,7 @@ switch (uname)
 case 'Darwin'
     alias vim '/Applications/MacVim.app/Contents/bin/vim'
     #alias tmux 'tmux -u'
+    nvm use default
 case 'Linux'
     alias pbcopy 'xsel --clipboard --input'
     alias pbpaste 'xsel --clipboard --output'
@@ -101,5 +102,4 @@ if test -d "$HOME/.gem/ruby/2.7.0/bin/"
     set -gx PATH "$HOME/.gem/ruby/2.7.0/bin/" $PATH
 end
 
-nvm use default
 status --is-interactive; and source (pyenv init -|psub)
