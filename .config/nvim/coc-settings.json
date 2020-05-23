@@ -29,9 +29,7 @@
       }
     }
   },
-  "coc.preferences.formatOnSaveFiletypes": [
-    "go"
-  ],
+  "coc.preferences.formatOnSaveFiletypes": ["go", "rust"],
   "git.enableGutters": true,
   "git.addGBlameToBufferVar": false,
   "cSpell.enabledLanguageIds": [

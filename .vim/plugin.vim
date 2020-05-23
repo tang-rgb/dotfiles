@@ -44,6 +44,7 @@ Plug 'dense-analysis/ale'
 Plug 'flazz/vim-colorschemes'        " 配色主题
 "Plug 'rafi/awesome-vim-colorschemes' " 配色主题
 Plug 'itchyny/lightline.vim'
+" Plug 'voldikss/vim-floaterm'
 " Plug 'mengelbrecht/lightline-bufferline'
 
 " general =====================
@@ -590,16 +591,16 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
-autocmd BufWritePre,BufLeave,VimLeavePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
-autocmd BufLeave,VimLeavePre *.go :call CocAction('format')
+autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+autocmd BufLeave *.go :call CocAction('format')
 " ====================================================
 "
 " =============== 'majutsushi/tagbar' ================
-nnoremap <silent> <Leader>tb :Tagbar<CR>
+" nnoremap <silent> <Leader>tb :Tagbar<CR>
 " ====================================================
 "
 " ============== 'liuchengxu/vista.vim' ==============
-"nnoremap <silent> <Leader>vt :Vista!!<CR>
+nnoremap <silent> <Leader>vt :Vista!!<CR>
 " How each level is indented and what to prepend.
 " This could make the display more compact or more spacious.
 " e.g., more compact: ["▸ ", ""]
@@ -632,7 +633,6 @@ let g:vista_fzf_preview = ['right:50%']
 let g:vista#renderer#enable_icon = 0
 
 autocmd FileType vista nnoremap <buffer> <silent> aa :<c-u>call vista#cursor#FoldOrJump()<CR>
-nnoremap <silent> <Leader>vi :Vista!!<CR>
 " ====================================================
 "
 " ================ 'Yggdroot/LeaderF' ================
