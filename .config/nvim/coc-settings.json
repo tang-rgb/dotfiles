@@ -1,5 +1,14 @@
 {
   "languageserver": {
+    "rust": {
+      "command": "rust-analyzer",
+      "filetypes": [
+        "rust"
+      ],
+      "rootPatterns": [
+        "Cargo.toml"
+      ]
+    },
     "golang": {
       "command": "gopls",
       "rootPatterns": [
@@ -29,7 +38,11 @@
       }
     }
   },
-  "coc.preferences.formatOnSaveFiletypes": ["go", "rust"],
+  "coc.preferences.formatOnSaveFiletypes": [
+    "go",
+    "rust",
+    "json"
+  ],
   "git.enableGutters": true,
   "git.addGBlameToBufferVar": false,
   "cSpell.enabledLanguageIds": [
@@ -53,10 +66,5 @@
     "**/*.dll"
   ],
   "cSpell.showStatus": true,
-  "cSpell.allowCompoundWords": true,
-  "cSpell.ignoreWords": [
-    "grpc",
-    "ucommon",
-    "ucore"
-  ]
+  "cSpell.allowCompoundWords": true
 }
