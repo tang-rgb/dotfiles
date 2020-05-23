@@ -54,9 +54,13 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 " Plug 'ryanoasis/vim-devicons'
-" Plug 'kristijanhusak/defx-icons'
+Plug 'kristijanhusak/defx-icons'
 Plug 'tommcdo/vim-fugitive-blame-ext' " git 信息
 Plug 'tpope/vim-fugitive'             " git 相关
+
+" tags ========================
+" Plug 'ludovicchabant/vim-gutentags'
+" Plug 'skywind3000/gutentags_plus'
 
 " code ========================
 Plug 'liuchengxu/vista.vim' " tag
@@ -1123,4 +1127,3 @@ else " Terminal
     endif " Linux termial
 endif
 " ===================================================i
-"
