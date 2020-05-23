@@ -49,7 +49,7 @@ Plug 'itchyny/lightline.vim'
 
 " general =====================
 "Plug 'asins/vimcdoc'
-Plug 'scrooloose/nerdtree'
+" Plug 'scrooloose/nerdtree'
 "Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -270,27 +270,27 @@ highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
 " ===================================================
 "
 " ============== 'scrooloose/nerdtree' ==============
-nmap <leader>nt :NERDTreeToggle<CR>
-let NERDTreeShowHidden=1  " 显示隐藏文件
-let NERDTreeMapOpenIntab='\r'
-let NERDTreeMinimalUI=1   " 去除第一行的帮助提示
-let NERDTreeWinSize=30    " 在左边占多宽
-let NERDTreeChDirMode = 2 " 当前目录的设定
-"自动退出
-autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeType == "primary") | q | endif
-"autocmd vimenter * NERDTree "打开vim时自动打开
-let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ 'Ignored'   : '☒',
-    \ "Unknown"   : "?",
-    \ }
+" nmap <leader>nt :NERDTreeToggle<CR>
+" let NERDTreeShowHidden=1  " 显示隐藏文件
+" let NERDTreeMapOpenIntab='\r'
+" let NERDTreeMinimalUI=1   " 去除第一行的帮助提示
+" let NERDTreeWinSize=30    " 在左边占多宽
+" let NERDTreeChDirMode = 2 " 当前目录的设定
+" "自动退出
+" autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeType == "primary") | q | endif
+" "autocmd vimenter * NERDTree "打开vim时自动打开
+" let g:NERDTreeIndicatorMapCustom = {
+"     \ "Modified"  : "✹",
+"     \ "Staged"    : "✚",
+"     \ "Untracked" : "✭",
+"     \ "Renamed"   : "➜",
+"     \ "Unmerged"  : "═",
+"     \ "Deleted"   : "✖",
+"     \ "Dirty"     : "✗",
+"     \ "Clean"     : "✔︎",
+"     \ 'Ignored'   : '☒',
+"     \ "Unknown"   : "?",
+"     \ }
 " ===================================================
 "
 " =============== 'rust-lang/rust.vim' ==============
