@@ -98,6 +98,7 @@ end
 # nvm
 if test -d "$HOME/.nvm/bin/"
     set -gx PATH "$HOME/.nvm/bin/" $PATH
+    nvm use lts
 end
 
 # ruby
