@@ -27,13 +27,9 @@
           "undeclaredname": true
         }
       }
-    },
-    "rust": {
-      "command": "rust-analyzer",
-      "filetypes": ["rust"],
-      "rootPatterns": ["Cargo.toml"]
     }
   },
+  "rust-analyzer.serverPath":"~/.cargo/bin/rust-analyzer",
   "coc.preferences.formatOnSaveFiletypes": ["go", "rust"],
   "git.enableGutters": true,
   "git.addGBlameToBufferVar": false,
