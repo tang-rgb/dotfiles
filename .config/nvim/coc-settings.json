@@ -33,6 +33,7 @@
   "coc.preferences.formatOnSaveFiletypes": ["go", "rust"],
   "git.enableGutters": true,
   "git.addGBlameToBufferVar": false,
+  "explorer.file.showHiddenFiles": true,
   "cSpell.enabledLanguageIds": [
     "go",
     "javascript",
