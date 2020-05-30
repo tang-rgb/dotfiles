@@ -29,8 +29,13 @@
       }
     }
   },
+<<<<<<< HEAD
   "coc.preferences.formatOnSaveFiletypes": [
   ],
+=======
+  "rust-analyzer.serverPath":"~/.cargo/bin/rust-analyzer",
+  "coc.preferences.formatOnSaveFiletypes": ["go", "rust"],
+>>>>>>> 1621336ddf7cbd53f8d2b21798d3d9b748703812
   "git.enableGutters": true,
   "git.addGBlameToBufferVar": false,
   "cSpell.enabledLanguageIds": [
