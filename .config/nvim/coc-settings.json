@@ -29,8 +29,13 @@
       }
     }
   },
+<<<<<<< HEAD
+  "coc.preferences.formatOnSaveFiletypes": [
+  ],
+=======
   "rust-analyzer.serverPath":"~/.cargo/bin/rust-analyzer",
   "coc.preferences.formatOnSaveFiletypes": ["go", "rust"],
+>>>>>>> 1621336ddf7cbd53f8d2b21798d3d9b748703812
   "git.enableGutters": true,
   "git.addGBlameToBufferVar": false,
   "explorer.file.showHiddenFiles": true,
@@ -61,28 +66,48 @@
     "ucommon",
     "ucore"
   ],
-    "explorer.keyMappings": {
+  "explorer.file.showHiddenFiles": true,
+  "explorer.keyMappings": {
     "i": false, // cancel default mapkey
-
     "gk": "expandablePrev",
     "gj": "expandableNext",
-
     "*": "toggleSelection",
     "<tab>": "actionMenu",
-
     "h": "collapse",
-    "l": ["expandable?", "expand", "open"],
-    "J": ["toggleSelection", "nodeNext"],
-    "K": ["toggleSelection", "nodePrev"],
+    "l": [
+      "expandable?",
+      "expand",
+      "open"
+    ],
+    "J": [
+      "toggleSelection",
+      "nodeNext"
+    ],
+    "K": [
+      "toggleSelection",
+      "nodePrev"
+    ],
     "gl": "expandRecursive",
     "gh": "collapseRecursive",
     "<2-LeftMouse>": [
       "expandable?",
-      ["expanded?", "collapse", "expand"],
+      [
+        "expanded?",
+        "collapse",
+        "expand"
+      ],
       "open"
     ],
-    "o": ["expanded?", "collapse", "expand"],
-    "<cr>": ["expandable?", "cd", "open"],
+    "o": [
+      "expanded?",
+      "collapse",
+      "expand"
+    ],
+    "<cr>": [
+      "expandable?",
+      "cd",
+      "open"
+    ],
     "e": "open",
     "s": "open:split",
     "S": "open:split:plain",
@@ -90,7 +115,6 @@
     "t": "open:tab",
     "<bs>": "gotoParent",
     "gp": "preview:labeling",
-
     "y": "copyFilepath",
     "Y": "copyFilename",
     "c": "copyFile",
@@ -98,32 +122,24 @@
     "p": "pasteFile",
     "d": "delete",
     "D": "deleteForever",
-
     "a": "addFile",
     "A": "addDirectory",
     "r": "rename",
-
     ".": "toggleHidden",
     "R": "refresh",
-
     "?": "help",
     "q": "quit",
     "<esc>": "esc",
     "X": "systemExecute",
     "gd": "listDrive",
-
     "f": "search",
     "F": "searchRecursive",
-
     "gf": "gotoSource:file",
     "gb": "gotoSource:buffer",
-
     "[[": "sourcePrev",
     "]]": "sourceNext",
-
     "[d": "diagnosticPrev",
     "]d": "diagnosticNext",
-
     "[c": "gitPrev",
     "]c": "gitNext",
     "<<": "gitStage",

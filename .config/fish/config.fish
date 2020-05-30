@@ -107,3 +107,5 @@ if test -d "$HOME/.gem/ruby/2.7.0/bin/"
 end
 
 status --is-interactive; and source (pyenv init -|psub)
+export GOPROXY=http://10.186.18.20:3000  
+export GONOSUMDB=actiontech.cloud
