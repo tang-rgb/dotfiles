@@ -30,10 +30,13 @@
     }
   },
   "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "markdown",
+    "rust",
     "json",
     "go"
   ],
-  "rust-analyzer.serverPath":"~/.cargo/bin/rust-analyzer",
+  "rust-analyzer.serverPath": "~/.cargo/bin/rust-analyzer",
   "git.enableGutters": true,
   "git.addGBlameToBufferVar": false,
   "cSpell.enabledLanguageIds": [

@@ -596,7 +596,8 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
-autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+autocmd BufWritePre,BufLeave,VimLeavePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+autocmd BufLeave,VimLeavePre *.go :call CocAction('format')
 " ====================================================
 "
 " =============== 'majutsushi/tagbar' ================
