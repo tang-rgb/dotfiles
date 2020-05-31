@@ -69,7 +69,7 @@ set nu
 " set cul
 set cc=80
 " set rnu " set relative_numbser
-set nornu
+" set nornu
 set ru " set ruler
 set showcmd " 右下角显示指令
 "set t_Co=256
