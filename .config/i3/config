@@ -220,7 +220,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id blueberry-tray
 exec --no-startup-id volumeicon
 exec --no-startup-id copyq
-exec --no-startup-id ss-qt5
+# exec --no-startup-id ss-qt5
 exec --no-startup-id ibus-daemon -x -d
 exec --no-startup-id megasync
 # exec --no-startup-id evolution
