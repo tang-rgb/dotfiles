@@ -1,4 +1,5 @@
 {
+  "diagnostic.level": "hint",
   "languageserver": {
     "golang": {
       "command": "gopls",
@@ -33,8 +34,7 @@
     "css",
     "markdown",
     "rust",
-    "json",
-    "go"
+    "json"
   ],
   "rust-analyzer.serverPath": "~/.cargo/bin/rust-analyzer",
   "git.enableGutters": true,
