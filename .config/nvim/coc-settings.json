@@ -1,4 +1,5 @@
 {
+  "diagnostic.level": "hint",
   "languageserver": {
     "golang": {
       "command": "gopls",
