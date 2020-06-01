@@ -177,10 +177,12 @@ nnoremap gk k
 nnoremap j gj
 nnoremap k gk
 " use ctrl+h/j/k/l switch window
-noremap <C-h> <C-w>h
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
+" noremap <C-h> <C-w>h
+" noremap <C-j> <C-w>j
+" noremap <C-k> <C-w>k
+" noremap <C-l> <C-w>l
+noremap <C-h> :bp<CR>
+noremap <C-l> :bn<CR>
 
 " 在插入模式下任意位置直接切到新的一行
 "inoremap <C-j> <C-o>o
