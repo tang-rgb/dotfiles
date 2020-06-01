@@ -596,7 +596,7 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
-" autocmd BufWritePre,BufLeave,VimLeavePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 " autocmd BufLeave,VimLeavePre *.go :call CocAction('format')
 nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
 " ====================================================
@@ -781,7 +781,7 @@ let g:lightline.component_type = {
       \     'linter_ok': 'right',
       \ }
 " \     'buffer': 'tabsel',
-let g:lightline.tabline = {'left': [['filename']]}
+let g:lightline.tabline = {'left': [['filename'], ['currentfunction']], 'right': [['currentfunction']]}
 
 let g:lightline#bufferline#show_number  = 1
 let g:lightline#bufferline#shorten_path = 1
@@ -1160,4 +1160,4 @@ nmap <space>ed :CocCommand explorer --preset .vim<CR>
 nmap <space>ef :CocCommand explorer --preset floating<CR>
 
 " List all presets
-nmap <space>el :CocList explPresets
+nmap <space>el :CocList explPresets<CR>
