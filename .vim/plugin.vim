@@ -65,11 +65,19 @@ Plug 'tpope/vim-fugitive'             " git 相关
 
 " code ========================
 Plug 'liuchengxu/vista.vim' " tag
-" Plug 'majutsushi/tagbar'    " tag
 Plug 'junegunn/vim-easy-align'
-Plug 'kshenoy/vim-signature'
+" Plug 'kshenoy/vim-signature'
 "Plug 'mg979/vim-visual-multi'
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " 补全
+Plug 'fannheyward/coc-rust-analyzer', {'do': 'yarn install --frozen-lockfile'}
+Plug 'iamcco/coc-actions', {'do': 'yarn install --frozen-lockfile'}
+Plug 'iamcco/coc-spell-checker', {'do': 'yarn install --frozen-lockfile'}
+Plug 'iamcco/coc-zi', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-git', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-yank', {'do': 'yarn install --frozen-lockfile'}
+Plug 'voldikss/coc-bookmark', {'do': 'yarn install --frozen-lockfile'}
+Plug 'weirongxu/coc-explorer', {'do': 'yarn install --frozen-lockfile'}
+
 Plug 'scrooloose/nerdcommenter'       " 注释
 Plug 'tpope/vim-surround'             " 快捷操作
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
@@ -596,7 +604,7 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
-" autocmd BufWritePre,BufLeave,VimLeavePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 " autocmd BufLeave,VimLeavePre *.go :call CocAction('format')
 nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
 " ====================================================
@@ -1132,7 +1140,9 @@ else " Terminal
         colorscheme mod8
     endif " Linux termial
 endif
-" ===================================================i
+" ===================================================
+"
+" ============ 'weirongxu/coc-explorer' =============
 let g:coc_explorer_global_presets = {
 \   '.vim': {
 \      'root-uri': '~/.vim',
@@ -1160,4 +1170,14 @@ nmap <space>ed :CocCommand explorer --preset .vim<CR>
 nmap <space>ef :CocCommand explorer --preset floating<CR>
 
 " List all presets
-nmap <space>el :CocList explPresets
+nmap <space>el :CocList explPresets<CR>
+" ===================================================
+"
+" ============ 'voldikss/coc-bookmark' ==============
+"
+nmap <space>m :CocList bookmark<CR>
+nmap mj <Plug>(coc-bookmark-next)
+nmap mk <Plug>(coc-bookmark-prev)
+nmap m, <Plug>(coc-bookmark-toggle)
+"
+" ===================================================
