@@ -59,7 +59,7 @@ set GO111MODULE on
 export GOPROXY=goproxy.cn,goproxy.io,direct 
 export GONOSUMDB=actiontech.cloud
 
-# bass source ~/.gvm/environments/default
+bass source ~/.gvm/environments/default
 
 # local bin
 if test -d "$HOME/.local/bin/"
