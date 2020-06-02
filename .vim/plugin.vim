@@ -789,7 +789,7 @@ let g:lightline.component_type = {
       \     'linter_ok': 'right',
       \ }
 " \     'buffer': 'tabsel',
-let g:lightline.tabline = {'left': [['filename']]}
+let g:lightline.tabline = {'left': [['filename'], ['currentfunction']], 'right': [['currentfunction']]}
 
 let g:lightline#bufferline#show_number  = 1
 let g:lightline#bufferline#shorten_path = 1
