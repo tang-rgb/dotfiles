@@ -51,15 +51,15 @@ alias gitdiff 'git difftool'
 
 # golang
 set GO111MODULE on
-if test -s "$GOPATH/bin/powerline-go"       # Powerline-go
-    function fish_prompt
-        powerline-go -error $status -shell bare -newline -colorize-hostname
-    end
-end
+# if test -s "$GOPATH/bin/powerline-go"       # Powerline-go
+#     function fish_prompt
+#         powerline-go -error $status -shell bare -newline -colorize-hostname
+#     end
+# end
 export GOPROXY=goproxy.cn,goproxy.io,direct 
 export GONOSUMDB=actiontech.cloud
 
-bass source ~/.gvm/environments/default
+# bass source ~/.gvm/environments/default
 
 # local bin
 if test -d "$HOME/.local/bin/"
@@ -106,4 +106,5 @@ if test -d "$HOME/.gem/ruby/2.7.0/bin/"
     set -gx PATH "$HOME/.gem/ruby/2.7.0/bin/" $PATH
 end
 
-status --is-interactive; and source (pyenv init -|psub)
+export GOPROXY=http://10.186.18.20:3000
+export GONOSUMDB=actiontech.cloud

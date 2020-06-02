@@ -65,11 +65,19 @@ Plug 'tpope/vim-fugitive'             " git 相关
 
 " code ========================
 Plug 'liuchengxu/vista.vim' " tag
-" Plug 'majutsushi/tagbar'    " tag
 Plug 'junegunn/vim-easy-align'
-Plug 'kshenoy/vim-signature'
+" Plug 'kshenoy/vim-signature'
 "Plug 'mg979/vim-visual-multi'
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " 补全
+Plug 'fannheyward/coc-rust-analyzer', {'do': 'yarn install --frozen-lockfile'}
+Plug 'iamcco/coc-actions', {'do': 'yarn install --frozen-lockfile'}
+Plug 'iamcco/coc-spell-checker', {'do': 'yarn install --frozen-lockfile'}
+Plug 'iamcco/coc-zi', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-git', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-yank', {'do': 'yarn install --frozen-lockfile'}
+Plug 'voldikss/coc-bookmark', {'do': 'yarn install --frozen-lockfile'}
+Plug 'weirongxu/coc-explorer', {'do': 'yarn install --frozen-lockfile'}
+
 Plug 'scrooloose/nerdcommenter'       " 注释
 Plug 'tpope/vim-surround'             " 快捷操作
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
@@ -503,6 +511,9 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gs :call CocAction('jumpDefinition', 'split')<CR>
+nmap <silent> gv :call CocAction('jumpDefinition', 'vsplit')<CR>
+nmap <silent> gt :call CocAction('jumpDefinition', 'tabe')<CR>
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -594,6 +605,8 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+" autocmd BufLeave,VimLeavePre *.go :call CocAction('format')
+nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
 " ====================================================
 "
 " =============== 'majutsushi/tagbar' ================
@@ -776,7 +789,7 @@ let g:lightline.component_type = {
       \     'linter_ok': 'right',
       \ }
 " \     'buffer': 'tabsel',
-let g:lightline.tabline = {'left': [['filename']]}
+let g:lightline.tabline = {'left': [['filename'], ['currentfunction']], 'right': [['currentfunction']]}
 
 let g:lightline#bufferline#show_number  = 1
 let g:lightline#bufferline#shorten_path = 1
@@ -842,7 +855,7 @@ nnoremap <silent> <space>w  :exe 'CocList -I --normal --input='.expand('<cword>'
 nmap [g <Plug>(coc-git-prevchunk)
 nmap ]g <Plug>(coc-git-nextchunk)
 " show chunk diff at current position
-nmap gs <Plug>(coc-git-chunkinfo)
+" nmap gs <Plug>(coc-git-chunkinfo)
 " show commit contains current position
 nmap gc <Plug>(coc-git-commit)
 " create text object for git chunks
@@ -1127,7 +1140,9 @@ else " Terminal
         colorscheme mod8
     endif " Linux termial
 endif
-" ===================================================i
+" ===================================================
+"
+" ============ 'weirongxu/coc-explorer' =============
 let g:coc_explorer_global_presets = {
 \   '.vim': {
 \      'root-uri': '~/.vim',
@@ -1155,4 +1170,14 @@ nmap <space>ed :CocCommand explorer --preset .vim<CR>
 nmap <space>ef :CocCommand explorer --preset floating<CR>
 
 " List all presets
-nmap <space>el :CocList explPresets
+nmap <space>el :CocList explPresets<CR>
+" ===================================================
+"
+" ============ 'voldikss/coc-bookmark' ==============
+"
+nmap <space>m :CocList bookmark<CR>
+nmap mj <Plug>(coc-bookmark-next)
+nmap mk <Plug>(coc-bookmark-prev)
+nmap m, <Plug>(coc-bookmark-toggle)
+"
+" ===================================================
