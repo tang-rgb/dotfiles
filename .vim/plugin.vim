@@ -58,6 +58,7 @@ Plug 'ryanoasis/vim-devicons'
 " Plug 'kristijanhusak/defx-icons'
 Plug 'tommcdo/vim-fugitive-blame-ext' " git 信息
 Plug 'tpope/vim-fugitive'             " git 相关
+Plug 'voldikss/vim-floaterm'
 
 " tags ========================
 " Plug 'ludovicchabant/vim-gutentags'
@@ -592,6 +593,7 @@ nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
 " Manage extensions.
 " nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
 nnoremap <silent> <space>e :CocCommand explorer<CR>
+nnoremap <silent> <leader>nt :CocCommand explorer<CR>
 
 " Show commands.
 nnoremap <silent> <space>c  :<C-u>CocList commands<cr>

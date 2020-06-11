@@ -56,10 +56,9 @@ set GO111MODULE on
 #         powerline-go -error $status -shell bare -newline -colorize-hostname
 #     end
 # end
-export GOPROXY=goproxy.cn,goproxy.io,direct 
-export GONOSUMDB=actiontech.cloud
 
-# bass source ~/.gvm/environments/default
+bass source ~/.gvm/environments/default
+gvm use go1.14.4 --default
 
 # local bin
 if test -d "$HOME/.local/bin/"
@@ -106,5 +105,5 @@ if test -d "$HOME/.gem/ruby/2.7.0/bin/"
     set -gx PATH "$HOME/.gem/ruby/2.7.0/bin/" $PATH
 end
 
-export GOPROXY=http://10.186.18.20:3000
+export GOPROXY=goproxy.cn,goproxy.io,direct 
 export GONOSUMDB=actiontech.cloud
