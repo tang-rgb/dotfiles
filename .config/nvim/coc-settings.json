@@ -106,7 +106,7 @@
     ],
     "<cr>": [
       "expandable?",
-      "cd",
+      "expand",
       "open"
     ],
     "e": "open",
