@@ -42,7 +42,7 @@ Plug 'sheerun/vim-polyglot'           " 语法高亮
 Plug 'dense-analysis/ale'
 
 Plug 'flazz/vim-colorschemes'        " 配色主题
-"Plug 'rafi/awesome-vim-colorschemes' " 配色主题
+Plug 't1mxg0d/vim-lucario'
 Plug 'itchyny/lightline.vim'
 " Plug 'voldikss/vim-floaterm'
 " Plug 'mengelbrecht/lightline-bufferline'
@@ -59,6 +59,8 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'tommcdo/vim-fugitive-blame-ext' " git 信息
 Plug 'tpope/vim-fugitive'             " git 相关
 Plug 'voldikss/vim-floaterm'
+Plug 'kristijanhusak/vim-carbon-now-sh'
+
 
 " tags ========================
 " Plug 'ludovicchabant/vim-gutentags'
@@ -1141,7 +1143,7 @@ if has("gui_running") " GUI
 else " Terminal
     colorscheme mod8
     if has('mac') " MacOS iterm2 or termial
-        colorscheme mod8
+        colorscheme lucario
     endif " Linux termial
 endif
 " ===================================================
