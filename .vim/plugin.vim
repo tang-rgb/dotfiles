@@ -72,6 +72,7 @@ Plug 'junegunn/vim-easy-align'
 " Plug 'kshenoy/vim-signature'
 "Plug 'mg979/vim-visual-multi'
 Plug 'fannheyward/coc-markdownlint', {'do': 'yarn install --frozen-lockfile', 'for': 'markdown'}
+Plug 'fannheyward/coc-marketplace', {'do': 'yarn install --frozen-lockfile'}
 Plug 'fannheyward/coc-rust-analyzer', {'do': 'yarn install --frozen-lockfile'}
 Plug 'iamcco/coc-actions', {'do': 'yarn install --frozen-lockfile'}
 Plug 'iamcco/coc-spell-checker', {'do': 'yarn install --frozen-lockfile'}
@@ -101,7 +102,7 @@ call plug#end()
 "
 " set to 1, nvim will open the preview window after entering the markdown buffer
 " default: 0
-let g:mkdp_auto_start = 1
+let g:mkdp_auto_start = 0
 
 let g:mkdp_browserfunc = 'g:open_browser'
 
@@ -1143,7 +1144,7 @@ if has("gui_running") " GUI
 else " Terminal
     colorscheme mod8
     if has('mac') " MacOS iterm2 or termial
-        colorscheme lucario
+        colorscheme mod8
     endif " Linux termial
 endif
 " ===================================================

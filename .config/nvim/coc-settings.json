@@ -62,11 +62,7 @@
   ],
   "cSpell.showStatus": true,
   "cSpell.allowCompoundWords": true,
-  "cSpell.ignoreWords": [
-    "grpc",
-    "ucommon",
-    "ucore"
-  ],
+  "cSpell.ignoreWords": [],
   "explorer.file.showHiddenFiles": true,
   "explorer.keyMappings": {
     "i": false, // cancel default mapkey
