@@ -57,8 +57,8 @@ set GO111MODULE on
 #     end
 # end
 
-bass source ~/.gvm/environments/default
-gvm use go1.14.4 --default
+# bass source ~/.gvm/environments/default
+# gvm use go1.14.4 --default
 
 # local bin
 if test -d "$HOME/.local/bin/"
