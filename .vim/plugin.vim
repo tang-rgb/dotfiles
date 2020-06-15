@@ -42,7 +42,7 @@ Plug 'sheerun/vim-polyglot'           " 语法高亮
 Plug 'dense-analysis/ale'
 
 Plug 'flazz/vim-colorschemes'        " 配色主题
-"Plug 'rafi/awesome-vim-colorschemes' " 配色主题
+Plug 't1mxg0d/vim-lucario'
 Plug 'itchyny/lightline.vim'
 " Plug 'voldikss/vim-floaterm'
 " Plug 'mengelbrecht/lightline-bufferline'
@@ -59,6 +59,8 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'tommcdo/vim-fugitive-blame-ext' " git 信息
 Plug 'tpope/vim-fugitive'             " git 相关
 Plug 'voldikss/vim-floaterm'
+Plug 'kristijanhusak/vim-carbon-now-sh'
+
 
 " tags ========================
 " Plug 'ludovicchabant/vim-gutentags'
@@ -71,16 +73,18 @@ Plug 'junegunn/vim-easy-align'
 "Plug 'mg979/vim-visual-multi'
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " 补全
 
+" Plug 'iamcco/coc-zi', {'do': 'yarn install --frozen-lockfile'}
 Plug 'fannheyward/coc-markdownlint', {'do': 'yarn install --frozen-lockfile', 'for': 'markdown'}
+Plug 'fannheyward/coc-marketplace', {'do': 'yarn install --frozen-lockfile'}
 Plug 'fannheyward/coc-rust-analyzer', {'do': 'yarn install --frozen-lockfile', 'for': 'rust'}
 Plug 'iamcco/coc-actions', {'do': 'yarn install --frozen-lockfile'}
 Plug 'iamcco/coc-spell-checker', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc.nvim', {'branch': 'release'} " 补全
-" Plug 'iamcco/coc-zi', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-git', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile', 'for': 'json'}
-Plug 'neoclide/coc-yank', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile', 'for': 'yaml'}
+Plug 'neoclide/coc-yank', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " 补全
 Plug 'voldikss/coc-bookmark', {'do': 'yarn install --frozen-lockfile'}
 Plug 'weirongxu/coc-explorer', {'do': 'yarn install --frozen-lockfile'}
 
@@ -102,7 +106,7 @@ call plug#end()
 "
 " set to 1, nvim will open the preview window after entering the markdown buffer
 " default: 0
-let g:mkdp_auto_start = 1
+let g:mkdp_auto_start = 0
 
 let g:mkdp_browserfunc = 'g:open_browser'
 
@@ -1188,3 +1192,34 @@ nmap mk <Plug>(coc-bookmark-prev)
 nmap m, <Plug>(coc-bookmark-toggle)
 "
 " ===================================================
+"
+" ============ 'neoclide/coc-snippets' ==============
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
+
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+" ===================================================
+"
