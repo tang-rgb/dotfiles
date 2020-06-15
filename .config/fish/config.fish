@@ -15,7 +15,7 @@ case 'Darwin'
 case 'Linux'
     alias pbcopy 'xsel --clipboard --input'
     alias pbpaste 'xsel --clipboard --output'
-    setxkbmap -option caps:swapescape
+    # setxkbmap -option caps:swapescape
 case "*"
     echo "unknowon os"
 end
