@@ -105,5 +105,5 @@ if test -d "$HOME/.gem/ruby/2.7.0/bin/"
     set -gx PATH "$HOME/.gem/ruby/2.7.0/bin/" $PATH
 end
 
-export GOPROXY=goproxy.cn,goproxy.io,direct 
-export GONOSUMDB=actiontech.cloud
+# export GOPROXY=goproxy.cn,goproxy.io,direct
+# export GONOSUMDB=actiontech.cloud
