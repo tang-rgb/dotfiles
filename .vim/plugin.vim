@@ -1186,10 +1186,10 @@ nmap <space>el :CocList explPresets<CR>
 "
 " ============ 'voldikss/coc-bookmark' ==============
 "
-nmap <space>b :CocList bookmark<CR>
-nmap bj <Plug>(coc-bookmark-next)
-nmap bk <Plug>(coc-bookmark-prev)
-nmap b, <Plug>(coc-bookmark-toggle)
+nmap <space>m :CocList bookmark<CR>
+nmap mj <Plug>(coc-bookmark-next)
+nmap mk <Plug>(coc-bookmark-prev)
+nmap m, <Plug>(coc-bookmark-toggle)
 "
 " ===================================================
 "
