@@ -51,7 +51,7 @@ set showtabline=2
 set wildchar=<Tab> wildcharm=<C-Z>
 set wildmenu
 set nowrap
-set conceallevel=2
+set conceallevel=0
 set selection=inclusive " 选择文本时，光标内容也在内
 set backspace=indent,eol,start
 set autowrite           " 自动保存
