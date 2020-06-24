@@ -76,6 +76,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'} " 补全
 Plug 'fannheyward/coc-markdownlint', {'do': 'yarn install --frozen-lockfile', 'for': 'markdown'}
 Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile', 'for': 'css'}
+Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile', 'for': 'css'}
 Plug 'fannheyward/coc-marketplace', {'do': 'yarn install --frozen-lockfile'}
 Plug 'fannheyward/coc-rust-analyzer', {'do': 'yarn install --frozen-lockfile', 'for': 'rust'}
 Plug 'iamcco/coc-actions', {'do': 'yarn install --frozen-lockfile'}
@@ -1230,6 +1231,7 @@ imap <C-j> <Plug>(coc-snippets-expand-jump)
 "   execute 'CocCommand actions.open ' . a:type
 " endfunction
 " xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
-" nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>
+" nmap <silent> <leader>a :<C-u>set operatorfunc=SID>cocActionsOpenFromSelected<CR>
 " ===================================================
-"
+autocmd User CocNvimInit :CocCommand tags.generate
+

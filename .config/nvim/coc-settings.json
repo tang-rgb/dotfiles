@@ -37,6 +37,7 @@
     "rust",
     "json"
   ],
+  "list.source.tags.command": "ctags -R -f ./.tags",
   "rust-analyzer.serverPath": "~/.cargo/bin/rust-analyzer",
   "git.enableGutters": true,
   "git.addGBlameToBufferVar": false,
@@ -146,7 +147,9 @@
     "Arial",
     "Intellij",
     "Metas",
+    "cncb",
     "enduml",
+    "icbc",
     "iface",
     "mycnf",
     "mysqld",
