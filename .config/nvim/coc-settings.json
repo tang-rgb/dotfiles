@@ -141,5 +141,23 @@
     "]c": "gitNext",
     "<<": "gitStage",
     ">>": "gitUnstage"
-  }
+  },
+  "cSpell.userWords": [
+    "Arial",
+    "Intellij",
+    "Metas",
+    "enduml",
+    "iface",
+    "mycnf",
+    "nvim",
+    "plantuml",
+    "skinparam",
+    "startuml",
+    "uagent",
+    "ucore",
+    "udelay",
+    "udeploy",
+    "uguard",
+    "urman"
+  ]
 }
