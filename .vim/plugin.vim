@@ -1233,5 +1233,3 @@ imap <C-j> <Plug>(coc-snippets-expand-jump)
 " xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
 " nmap <silent> <leader>a :<C-u>set operatorfunc=SID>cocActionsOpenFromSelected<CR>
 " ===================================================
-autocmd User CocNvimInit :CocCommand tags.generate
-
