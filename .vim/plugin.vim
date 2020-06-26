@@ -42,7 +42,7 @@ Plug 'sheerun/vim-polyglot'           " 语法高亮
 Plug 'dense-analysis/ale'
 
 Plug 'flazz/vim-colorschemes'        " 配色主题
-Plug 't1mxg0d/vim-lucario'
+" Plug 't1mxg0d/vim-lucario'
 Plug 'itchyny/lightline.vim'
 " Plug 'voldikss/vim-floaterm'
 " Plug 'mengelbrecht/lightline-bufferline'
@@ -1151,6 +1151,11 @@ else " Terminal
     colorscheme mod8
     if has('mac') " MacOS iterm2 or termial
         colorscheme mod8
+        " colorscheme lucario
+        " colorscheme nord
+        " colorscheme nordisk
+        " colorscheme cobalt2
+        " colorscheme materialbox
     endif " Linux termial
 endif
 " ===================================================
