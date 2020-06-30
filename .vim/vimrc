@@ -20,6 +20,7 @@
 set tags=./.tags;,.tags
 " for large files
 syntax on
+set shell=/bin/bash
 set mmp=100000
 set regexpengine=1
 set redrawtime=100000
