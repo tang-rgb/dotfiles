@@ -1155,7 +1155,7 @@ else " Terminal
         " colorscheme nord
         " colorscheme nordisk
         " colorscheme cobalt2
-        " colorscheme materialbox
+        " colorscheme materialtheme
     endif " Linux termial
 endif
 " ===================================================

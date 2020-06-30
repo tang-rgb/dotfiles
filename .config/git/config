@@ -48,3 +48,5 @@ prompt     = No
     encoding = utf-8  
 [pull]
 	rebase = false
+[url "git@10.186.18.21:universe"]
+	insteadOf = http://10.186.18.21/universe
