@@ -71,7 +71,7 @@ Plug 'liuchengxu/vista.vim' " tag
 Plug 'junegunn/vim-easy-align'
 " Plug 'kshenoy/vim-signature'
 "Plug 'mg979/vim-visual-multi'
-Plug 'neoclide/coc.nvim', {'branch': 'release'} " 补全
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
 Plug 'fannheyward/coc-markdownlint', {'do': 'yarn install --frozen-lockfile', 'for': 'markdown'}
 Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
@@ -86,7 +86,6 @@ Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile', 'for': 'json'
 Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile', 'for': 'yaml'}
 Plug 'neoclide/coc-yank', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc.nvim', {'branch': 'release'} " 补全
 Plug 'voldikss/coc-bookmark', {'do': 'yarn install --frozen-lockfile'}
 Plug 'weirongxu/coc-explorer', {'do': 'yarn install --frozen-lockfile'}
 
