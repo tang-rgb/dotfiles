@@ -160,6 +160,7 @@
     "systemctl",
     "systemd",
     "uagent",
+    "ucommon",
     "ucore",
     "udelay",
     "udeploy",
