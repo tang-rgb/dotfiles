@@ -105,5 +105,3 @@ if test -d "$HOME/.gem/ruby/2.7.0/bin/"
     set -gx PATH "$HOME/.gem/ruby/2.7.0/bin/" $PATH
 end
 
-export GOPROXY=http://10.186.18.20:3000  
-export GONOSUMDB=actiontech.cloud
