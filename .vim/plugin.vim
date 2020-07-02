@@ -1149,12 +1149,13 @@ if has("gui_running") " GUI
 else " Terminal
     colorscheme mod8
     if has('mac') " MacOS iterm2 or termial
-        colorscheme mod8
+        " colorscheme mod8
         " colorscheme lucario
         " colorscheme nord
         " colorscheme nordisk
         " colorscheme cobalt2
         " colorscheme materialtheme
+        colorscheme hybrid_reverse
     endif " Linux termial
 endif
 " ===================================================
