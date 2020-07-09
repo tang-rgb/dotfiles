@@ -58,7 +58,6 @@ set GO111MODULE on
 # end
 
 export GOPROXY=https://goproxy.io,direct
-export GOSUMDB=gosum.io+ce6e7565+AY5qEHUk/qmHc5btzW45JVoENfazw8LielDsaI+lEbq6
 
 # bass source ~/.gvm/environments/default
 # gvm use go1.14.4 --default
@@ -108,3 +107,5 @@ if test -d "$HOME/.gem/ruby/2.7.0/bin/"
     set -gx PATH "$HOME/.gem/ruby/2.7.0/bin/" $PATH
 end
 
+# ===================== temp =======================
+gvm use go1.14.4 --default
