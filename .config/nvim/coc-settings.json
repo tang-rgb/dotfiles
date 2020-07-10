@@ -28,6 +28,18 @@
           "undeclaredname": true
         }
       }
+    },
+    "bash": {
+      "command": "bash-language-server",
+      "args": [
+        "start"
+      ],
+      "filetypes": [
+        "sh"
+      ],
+      "ignoredRootPaths": [
+        "~"
+      ]
     }
   },
   "coc.preferences.formatOnSaveFiletypes": [
@@ -36,6 +48,11 @@
     "markdown",
     "rust",
     "json"
+  ],
+  "list.source.tags.command": "ctags -R -f ./.tags",
+  "list.source.grep.args": [
+    "-S",
+    "-i"
   ],
   "rust-analyzer.serverPath": "~/.cargo/bin/rust-analyzer",
   "git.enableGutters": true,
@@ -141,5 +158,31 @@
     "]c": "gitNext",
     "<<": "gitStage",
     ">>": "gitUnstage"
-  }
+  },
+  "cSpell.userWords": [
+    "Arial",
+    "Intellij",
+    "Metas",
+    "Umon",
+    "cncb",
+    "enduml",
+    "icbc",
+    "iface",
+    "mycnf",
+    "mysqld",
+    "nvim",
+    "plantuml",
+    "skinparam",
+    "startuml",
+    "systemctl",
+    "systemd",
+    "uagent",
+    "ucommon",
+    "ucore",
+    "udelay",
+    "udeploy",
+    "udms",
+    "uguard",
+    "urman"
+  ]
 }

@@ -57,6 +57,8 @@ set GO111MODULE on
 #     end
 # end
 
+export GOPROXY=https://goproxy.io,direct
+
 # bass source ~/.gvm/environments/default
 # gvm use go1.14.4 --default
 
@@ -105,5 +107,5 @@ if test -d "$HOME/.gem/ruby/2.7.0/bin/"
     set -gx PATH "$HOME/.gem/ruby/2.7.0/bin/" $PATH
 end
 
-export GOPROXY=http://10.186.18.20:3000  
-export GONOSUMDB=actiontech.cloud
+# ===================== temp =======================
+gvm use go1.14.4 --default

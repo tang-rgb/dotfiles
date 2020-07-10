@@ -42,7 +42,7 @@ Plug 'sheerun/vim-polyglot'           " 语法高亮
 Plug 'dense-analysis/ale'
 
 Plug 'flazz/vim-colorschemes'        " 配色主题
-Plug 't1mxg0d/vim-lucario'
+" Plug 't1mxg0d/vim-lucario'
 Plug 'itchyny/lightline.vim'
 " Plug 'voldikss/vim-floaterm'
 " Plug 'mengelbrecht/lightline-bufferline'
@@ -71,9 +71,12 @@ Plug 'liuchengxu/vista.vim' " tag
 Plug 'junegunn/vim-easy-align'
 " Plug 'kshenoy/vim-signature'
 "Plug 'mg979/vim-visual-multi'
-Plug 'neoclide/coc.nvim', {'branch': 'release'} " 补全
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
 Plug 'fannheyward/coc-markdownlint', {'do': 'yarn install --frozen-lockfile', 'for': 'markdown'}
+Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile', 'for': 'css'}
+Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile', 'for': 'css'}
 Plug 'fannheyward/coc-marketplace', {'do': 'yarn install --frozen-lockfile'}
 Plug 'fannheyward/coc-rust-analyzer', {'do': 'yarn install --frozen-lockfile', 'for': 'rust'}
 Plug 'iamcco/coc-actions', {'do': 'yarn install --frozen-lockfile'}
@@ -83,7 +86,6 @@ Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile', 'for': 'json'
 Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile', 'for': 'yaml'}
 Plug 'neoclide/coc-yank', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc.nvim', {'branch': 'release'} " 补全
 Plug 'voldikss/coc-bookmark', {'do': 'yarn install --frozen-lockfile'}
 Plug 'weirongxu/coc-explorer', {'do': 'yarn install --frozen-lockfile'}
 
@@ -112,7 +114,7 @@ let g:mkdp_browserfunc = 'g:open_browser'
 " set to 1, the nvim will auto close current preview window when change
 " from markdown buffer to another buffer
 " default: 1
-let g:mkdp_auto_close = 1
+let g:mkdp_auto_close = 0
 
 " set to 1, the vim will refresh markdown when save the buffer or
 " leave from insert mode, default 0 is auto refresh markdown as you edit or
@@ -164,7 +166,7 @@ let g:mkdp_browserfunc = ''
 let g:mkdp_preview_options = {
     \ 'mkit': {},
     \ 'katex': {},
-    \ 'uml': {},
+    \ 'uml': {'server': 'http://localhost:8080'},
     \ 'maid': {},
     \ 'disable_sync_scroll': 0,
     \ 'sync_scroll_type': 'middle',
@@ -175,7 +177,7 @@ let g:mkdp_preview_options = {
 
 " use a custom markdown style must be absolute path
 " like '/Users/username/markdown.css' or expand('~/markdown.css')
-let g:mkdp_markdown_css = ''
+let g:mkdp_markdown_css = expand('~/.vim/markdown.css')
 
 " use a custom highlight style must absolute path
 " like '/Users/username/highlight.css' or expand('~/highlight.css')
@@ -493,6 +495,7 @@ inoremap <silent><expr> <TAB>
       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 nnoremap <silent> <space>g :<C-u>CocList<CR>
+nnoremap <silent> <space>t :<C-u>CocList grep<CR>
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -833,7 +836,7 @@ autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
 command! -nargs=+ -complete=custom,s:GrepArgs Rg exe 'CocList grep '.<q-args>
 
 function! s:GrepArgs(...)
-  let list = ['-S', '-smartcase', '-i', '-ignorecase', '-w', '-word',
+  let list = ['-S', '--smart-case', '-i', '--ignore-case', '-w', '-word',
         \ '-e', '-regex', '-u', '-skip-vcs-ignores', '-t', '-extension']
   return join(list, "\n")
 endfunction
@@ -1147,7 +1150,13 @@ if has("gui_running") " GUI
 else " Terminal
     colorscheme mod8
     if has('mac') " MacOS iterm2 or termial
-        colorscheme mod8
+        " colorscheme mod8
+        " colorscheme lucario
+        " colorscheme nord
+        " colorscheme nordisk
+        " colorscheme cobalt2
+        " colorscheme materialtheme
+        colorscheme hybrid_material
     endif " Linux termial
 endif
 " ===================================================
@@ -1228,6 +1237,5 @@ imap <C-j> <Plug>(coc-snippets-expand-jump)
 "   execute 'CocCommand actions.open ' . a:type
 " endfunction
 " xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
-" nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>
+" nmap <silent> <leader>a :<C-u>set operatorfunc=SID>cocActionsOpenFromSelected<CR>
 " ===================================================
-"
