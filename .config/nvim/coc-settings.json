@@ -168,6 +168,8 @@
     "enduml",
     "icbc",
     "iface",
+    "jira",
+    "matishsiao",
     "mycnf",
     "mysqld",
     "nvim",
@@ -175,6 +177,7 @@
     "skinparam",
     "startuml",
     "struct",
+    "sysinfo",
     "systemctl",
     "systemd",
     "uagent",
@@ -184,6 +187,7 @@
     "udeploy",
     "udms",
     "uguard",
-    "urman"
+    "urman",
+    "zcalusic"
   ]
 }
