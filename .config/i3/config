@@ -236,7 +236,7 @@ bindsym $mod+Shift+v exec rofi -modi "clipboard:greenclip print" -show clipboard
 
 bar {
     i3bar_command i3bar
-    output DVI-D-0
+    output DVI-D-1
     mode hide
     position bottom
     colors {

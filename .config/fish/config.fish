@@ -108,4 +108,6 @@ if test -d "$HOME/.gem/ruby/2.7.0/bin/"
 end
 
 # ===================== temp =======================
-gvm use go1.14.4 --default
+# gvm use go1.14.4 --default
+export GOPRIVATE=actiontech.cloud
+export GOINSCURE=actiontech.cloud
