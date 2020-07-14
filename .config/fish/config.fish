@@ -49,6 +49,8 @@ alias gitdiff 'git difftool'
 
 # ========== Env Vars ==========
 
+export TERM=screen-256color
+
 # golang
 set GO111MODULE on
 # if test -s "$GOPATH/bin/powerline-go"       # Powerline-go
@@ -59,7 +61,6 @@ set GO111MODULE on
 
 export GOPROXY=https://goproxy.io,direct
 
-# bass source ~/.gvm/environments/default
 # gvm use go1.14.4 --default
 
 # local bin
@@ -111,3 +112,4 @@ end
 # gvm use go1.14.4 --default
 export GOPRIVATE=actiontech.cloud
 export GOINSCURE=actiontech.cloud
+bass source ~/.gvm/environments/default
