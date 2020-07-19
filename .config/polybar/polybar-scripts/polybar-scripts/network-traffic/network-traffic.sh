@@ -27,8 +27,7 @@ print_bit() {
 }
 
 INTERVAL=3
-INTERFACES="enp6s0u1u3"
-
+INTERFACES="enp0s29u1u1"
 
 declare -A bytes
 
