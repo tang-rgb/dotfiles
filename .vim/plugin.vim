@@ -74,7 +74,6 @@ Plug 'junegunn/vim-easy-align'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
 Plug 'fannheyward/coc-markdownlint', {'do': 'yarn install --frozen-lockfile', 'for': 'markdown'}
-Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile', 'for': 'css'}
 Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile', 'for': 'css'}
 Plug 'fannheyward/coc-marketplace', {'do': 'yarn install --frozen-lockfile'}
@@ -89,6 +88,7 @@ Plug 'neoclide/coc-yank', {'do': 'yarn install --frozen-lockfile'}
 Plug 'voldikss/coc-bookmark', {'do': 'yarn install --frozen-lockfile'}
 Plug 'weirongxu/coc-explorer', {'do': 'yarn install --frozen-lockfile'}
 
+Plug 'ap/vim-css-color'
 Plug 'scrooloose/nerdcommenter'       " 注释
 Plug 'tpope/vim-surround'             " 快捷操作
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
@@ -553,7 +553,7 @@ nmap <leader>f  :call CocAction('format') <CR>
 augroup mygroup
   autocmd!
   " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  autocmd FileType typescript,json setl formatexpr=CocActionAsync('formatSelected')
   " Update signature help on jump placeholder.
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
@@ -582,13 +582,13 @@ omap af <Plug>(coc-funcobj-a)
 "xmap <silent> <TAB> <Plug>(coc-range-select)
 
 " Add `:Format` command to format current buffer.
-command! -nargs=0 Format :call CocAction('format')
+command! -nargs=0 Format :call CocActionAsync('format')
 
 " Add `:Fold` command to fold current buffer.
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+command! -nargs=? Fold :call     CocActionAsync('fold', <f-args>)
 
 " Add `:OR` command for organize imports of the current buffer.
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
 
 
 " Add (Neo)Vim's native statusline support.
@@ -617,7 +617,7 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
-autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+autocmd BufWritePre *.go :call CocActionAsync('runCommand', 'editor.action.organizeImport')
 " autocmd BufLeave,VimLeavePre *.go :call CocAction('format')
 nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
 " ====================================================
