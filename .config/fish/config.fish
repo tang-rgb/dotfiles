@@ -111,5 +111,5 @@ end
 # ===================== temp =======================
 # gvm use go1.14.4 --default
 export GOPRIVATE=actiontech.cloud
-export GOINSCURE=actiontech.cloud
+export GOINSECURE=actiontech.cloud
 bass source ~/.gvm/environments/default
