@@ -496,6 +496,8 @@ inoremap <silent><expr> <TAB>
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 nnoremap <silent> <space>g :<C-u>CocList<CR>
 nnoremap <silent> <space>t :<C-u>CocList grep<CR>
+nnoremap <silent> <space>f :<C-u>CocList files<CR>
+command! -nargs=+ -complete=custom,s:GrepArgs Rg exe 'CocList grep '.<q-args>
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -833,7 +835,6 @@ autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
 "
 " ================'neoclide/coc-list' ==============
 " grep word under cursor
-command! -nargs=+ -complete=custom,s:GrepArgs Rg exe 'CocList grep '.<q-args>
 
 function! s:GrepArgs(...)
   let list = ['-S', '--smart-case', '-i', '--ignore-case', '-w', '-word',
