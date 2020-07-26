@@ -232,11 +232,11 @@ exec --no-startup-id /$HOME/.config/polybar/launch.sh
 exec --no-startup-id /$HOME/.local/init.sh
 
 exec --no-startup-id greenclip daemon
-bindsym $mod+Shift+v exec rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
+# bindsym $mod+Shift+v exec rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
 
 bar {
     i3bar_command i3bar
-    output DVI-D-1
+    output DVI-D-0
     mode hide
     position bottom
     colors {
