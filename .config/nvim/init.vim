@@ -1,1 +1,1 @@
-/Users/jessun/.vim/vimrc
+/home/jessun/.vim/vimrc

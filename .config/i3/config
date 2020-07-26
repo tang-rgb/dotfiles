@@ -236,7 +236,7 @@ exec --no-startup-id greenclip daemon
 
 bar {
     i3bar_command i3bar
-    output DVI-D-0
+    output DVI-D-1
     mode hide
     position bottom
     colors {
