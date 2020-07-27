@@ -69,8 +69,6 @@ Plug 'kristijanhusak/vim-carbon-now-sh'
 " code ========================
 Plug 'liuchengxu/vista.vim' " tag
 Plug 'junegunn/vim-easy-align'
-" Plug 'kshenoy/vim-signature'
-"Plug 'mg979/vim-visual-multi'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
 Plug 'fannheyward/coc-markdownlint', {'do': 'yarn install --frozen-lockfile', 'for': 'markdown'}
@@ -620,7 +618,6 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 autocmd BufWritePre *.go :call CocActionAsync('runCommand', 'editor.action.organizeImport')
-" autocmd BufLeave,VimLeavePre *.go :call CocAction('format')
 nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
 " ====================================================
 "

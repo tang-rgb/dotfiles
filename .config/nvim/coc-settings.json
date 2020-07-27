@@ -42,19 +42,23 @@
       ]
     }
   },
+  "rust-analyzer.serverPath": "~/.cargo/bin/rust-analyzer",
   "coc.preferences.formatOnSaveFiletypes": [
     "go",
     "css",
     "markdown",
     "rust",
-    "json"
+    "json",
+    "go",
+    "json",
+    "markdown",
+    "rust"
   ],
   "list.source.tags.command": "ctags -R -f ./.tags",
   "list.source.grep.args": [
     "-S",
     "-i"
   ],
-  "rust-analyzer.serverPath": "~/.cargo/bin/rust-analyzer",
   "git.enableGutters": true,
   "git.addGBlameToBufferVar": false,
   "cSpell.enabledLanguageIds": [
