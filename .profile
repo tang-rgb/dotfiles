@@ -35,7 +35,7 @@ fi
     #PATH="$HOME/.local/bin:$PATH"
 #fi
 
-# xrandr --output HDMI-1 --rotate left --output DP-1 --rotate left --left-of HDMI-1
+xrandr --output HDMI-0 --output DP-0 --right-of HDMI-0 --output DP-2 --right-of DP-0
 #if [ -x polybar ]; then
     #polybar -c ~/.config/polybar/config.ini main &
 #fi
