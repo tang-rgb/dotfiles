@@ -38,8 +38,8 @@ draft: true
 ---
 endsnippet
 
-snippet "date" "date" w
-`date "+%Y-%m-%d" && date -R | awk '{print$1}' | sed 's/,/ /'`
+snippet "date" "date" b
+` (date "+%Y-%m-%d " ;  date -R | awk '{print$1}' ) |  sed ':a;N;s/\n//' | sed 's/,//'`
 endsnippet
 
 snippet "plantuml_content" "plantuml default skin" b
