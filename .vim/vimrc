@@ -69,6 +69,7 @@ set cuc
 " set cul 行线
 set cul
 set cc=120
+set textwidth=120       " 设置多少列开始换行，0 表示不限制
 " set rnu " set relative_numbser
 " set nornu
 set ru " set ruler
@@ -103,7 +104,6 @@ set softtabstop=4
 set tabstop=4
 set linebreak
 set nolist
-set textwidth=80       " 设置多少列开始换行，0 表示不限制
 set expandtab
 "%retab               " 加!是用于处理非空白字符之后的TAB， 即所有的TAB；若不加，则只处理行首的TAB
 %retab!
