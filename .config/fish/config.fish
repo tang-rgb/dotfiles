@@ -49,7 +49,7 @@ alias gitdiff 'git difftool'
 
 # ========== Env Vars ==========
 
-export TERM=screen-256color
+export TERM="xterm-256color"
 
 # golang
 set GO111MODULE on
